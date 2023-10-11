@@ -3,6 +3,7 @@ package com.nocountry.inmuebles.controller;
 import com.nocountry.inmuebles.model.entity.Property;
 import com.nocountry.inmuebles.model.entity.PropertyRepository;
 import com.nocountry.inmuebles.model.mapper.DTORegisterProperty;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class PropertyController {
 
     //-------------------------------------------- Register Property Method --------------------------------------------
     @PostMapping
-    public void registerProperty(@RequestBody DTORegisterProperty dtoRegisterProperty) {
+    public void registerProperty(@RequestBody @Valid DTORegisterProperty dtoRegisterProperty) {
         propertyRepository.save(new Property(dtoRegisterProperty));
         System.out.println("\n" + dtoRegisterProperty);
     }

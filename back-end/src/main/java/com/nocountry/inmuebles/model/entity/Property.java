@@ -32,7 +32,7 @@ public class Property {
     private String registration_time;
     private String name;
     private String description;
-//    private Boolean noted;
+    private Boolean noted;
 
     //-------------------------------------------------- Constructor ---------------------------------------------------
     public Property(DTORegisterProperty dtoRegisterProperty) {

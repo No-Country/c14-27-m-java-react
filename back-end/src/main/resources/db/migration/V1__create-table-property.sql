@@ -8,7 +8,7 @@ create table property(
     bathrooms varchar(100) not null,
     contract_type varchar(100) not null,
     state varchar(100) not null,
-    user_registration varchar(100) not null,
+    user_registration varchar(100) not null unique,
     property_image varchar(100) not null,
     registration_date varchar(100) not null,
     registration_time varchar(100) not null,

@@ -1,18 +1,22 @@
 package com.nocountry.inmuebles.model.mapper;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public record DTORegisterProperty(
-        String propertyType,
-        DTOAddress address,
-        String price,
-        String squareMeter,
-        String bedrooms,
-        String bathrooms,
-        String contractType,
-        String state,
-        String userRegistration,
-        String propertyImage,
-        String registrationDate,
-        String registrationTime,
-        String name,
-        String description) {
+        @NotBlank String propertyType,
+        @NotNull @Valid DTOAddress address,
+        @NotBlank String price,
+        @NotBlank String squareMeter,
+        @NotBlank String bedrooms,
+        @NotBlank String bathrooms,
+        @NotBlank String contractType,
+        @NotBlank String state,
+        @NotBlank String userRegistration,
+        @NotBlank String propertyImage,
+        @NotBlank String registrationDate,
+        @NotBlank String registrationTime,
+        @NotBlank String name,
+        @NotBlank String description) {
 }
