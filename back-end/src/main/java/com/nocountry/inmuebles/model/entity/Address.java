@@ -18,8 +18,8 @@ public class Address {
     private String complement;
     private String province;
     private String city;
-    private String locationLat;
-    private String locationLen;
+    private String location_lat;
+    private String location_len;
 
     //-------------------------------------------------- Constructor ---------------------------------------------------
     public Address(DTOAddress address) {
@@ -28,7 +28,8 @@ public class Address {
         this.complement = address.complement();
         this.province = address.province();
         this.city = address.city();
-        this.locationLat = address.locationLat();
-        this.locationLen = address.locationLen();
+        location_lat = address.locationLat();
+        location_len = address.locationLen();
+
     }
 }

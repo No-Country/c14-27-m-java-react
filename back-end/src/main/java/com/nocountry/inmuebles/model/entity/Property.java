@@ -10,44 +10,44 @@ import lombok.NoArgsConstructor;
 @Table(name = "property")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id_property")
+@EqualsAndHashCode(of = "id")
 public class Property {
 
     //Class attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_property;
-    private String propertyType;
+    private Long id;
+    private String property_type;
     @Embedded
     private Address address;
     private String price;
-    private String squareMeter;
+    private String square_meter;
     private String bedrooms;
     private String bathrooms;
-    private String contractType;
+    private String contract_type;
     private String state;
-    private String userRegistration;
-    private String propertyImage;
-    private String registrationDate;
-    private String registrationTime;
+    private String user_registration;
+    private String property_image;
+    private String registration_date;
+    private String registration_time;
     private String name;
     private String description;
-    private Boolean noted;
+//    private Boolean noted;
 
     //-------------------------------------------------- Constructor ---------------------------------------------------
     public Property(DTORegisterProperty dtoRegisterProperty) {
-        this.propertyType = dtoRegisterProperty.propertyType();
+        property_type = dtoRegisterProperty.propertyType();
         this.address = new Address(dtoRegisterProperty.address());
         this.price = dtoRegisterProperty.price();
-        this.squareMeter = dtoRegisterProperty.squareMeter();
+        square_meter = dtoRegisterProperty.squareMeter();
         this.bedrooms = dtoRegisterProperty.bedrooms();
         this.bathrooms = dtoRegisterProperty.bathrooms();
-        this.contractType = dtoRegisterProperty.contractType();
+        contract_type = dtoRegisterProperty.contractType();
         this.state = dtoRegisterProperty.state();
-        this.userRegistration = dtoRegisterProperty.userRegistration();
-        this.propertyImage = dtoRegisterProperty.propertyImage();
-        this.registrationDate = dtoRegisterProperty.registrationDate();
-        this.registrationTime = dtoRegisterProperty.registrationTime();
+        user_registration = dtoRegisterProperty.userRegistration();
+        property_image = dtoRegisterProperty.propertyImage();
+        registration_date = dtoRegisterProperty.registrationDate();
+        registration_time = dtoRegisterProperty.registrationTime();
         this.name = dtoRegisterProperty.name();
         this.description = dtoRegisterProperty.description();
     }
