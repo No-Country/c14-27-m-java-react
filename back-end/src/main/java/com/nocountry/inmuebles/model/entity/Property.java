@@ -2,15 +2,14 @@ package com.nocountry.inmuebles.model.entity;
 
 import com.nocountry.inmuebles.model.mapper.DTORegisterProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "property")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Getter @Setter @Builder
 public class Property {
 
     //Class attributes
