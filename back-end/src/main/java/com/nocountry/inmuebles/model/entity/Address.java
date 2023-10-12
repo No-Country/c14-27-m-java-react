@@ -3,13 +3,14 @@ package com.nocountry.inmuebles.model.entity;
 import com.nocountry.inmuebles.model.mapper.DTOAddress;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor @Builder
 public class Address {
 
     //Class attributes
