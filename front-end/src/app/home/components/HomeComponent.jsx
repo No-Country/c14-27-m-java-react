@@ -46,7 +46,7 @@ export default function HomeComponent() {
               value={selectedProvince}
               onChange={(e) => setSelectedProvince(e.target.value)}
             >
-              <option value="">Select a province</option>
+              <option value="">Selecciona una provincia</option>
               {provinces.map((province) => (
                 <option key={province} value={province}>
                   {province}
@@ -58,14 +58,14 @@ export default function HomeComponent() {
             <input
               className="form-control"
               type="text"
-              placeholder="City"
+              placeholder="Ciudad"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
-          <div className="col">
-            <button className="btn btn-primary" onClick={handleSearch}>
-              Search
+          <div className="col" style={{marginRight: 200}}>
+            <button className="btn btn-primary"  onClick={handleSearch}>
+              Buscar
             </button>
           </div>
         </div>
