@@ -1,7 +1,7 @@
 import React from 'react';
-import logoImage from './your-logo.png'; // Import your logo image
+import logoImage from './your-logo.png';
 
-const blueColor = "#6DC3FC"; // Define the desired blue color
+const blueColor = "#6DC3FC";
 
 
 const Header = () => {

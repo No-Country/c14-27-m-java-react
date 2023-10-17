@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImage from '../Header/your-logo.png'; // Import your logo image
+import logoImage from '../Header/your-logo.png';
 
 function Footer() {
   return (
