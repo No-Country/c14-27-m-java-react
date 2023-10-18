@@ -27,6 +27,9 @@ export default function DestacadasPage() {
                       <PropCard />
                   </div>
               </div>
+              <div className="d-flex justify-content-center">
+                    <button className="btn btn-primary mt-4 mb-4">Ver Más</button>
+                </div>
             </div>
         </div>
     )

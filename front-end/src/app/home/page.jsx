@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div>
       <HomeComponent />
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', marginLeft: 70 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', marginLeft: 150 }}>
         <DestacadasPage />
       </div>
     </div>
