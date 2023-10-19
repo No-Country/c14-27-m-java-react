@@ -6,14 +6,15 @@ import com.nocountry.inmuebles.repository.PropertyRepository;
 import com.nocountry.inmuebles.service.abstraction.PropertyService;
 import com.nocountry.inmuebles.util.PropertySpecification;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+
 @RequiredArgsConstructor
 @Service
 public class PropertyServiceImpl implements PropertyService {
-
     private final PropertyRepository propertyRepository;
 
     private final PropertyMapper propertyMapper;

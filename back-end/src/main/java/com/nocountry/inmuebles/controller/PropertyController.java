@@ -1,8 +1,12 @@
 package com.nocountry.inmuebles.controller;
 
+import com.nocountry.inmuebles.model.entity.Image;
 import com.nocountry.inmuebles.model.entity.Property;
 import com.nocountry.inmuebles.model.mapper.DTORegisterProperty;
+import com.nocountry.inmuebles.model.request.PropertyRequest;
+import com.nocountry.inmuebles.model.response.PropertyResponse;
 import com.nocountry.inmuebles.repository.PropertyRepository;
+import com.nocountry.inmuebles.service.abstraction.AwsService;
 import com.nocountry.inmuebles.service.abstraction.PropertyService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 
 @RequiredArgsConstructor
@@ -18,16 +25,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/property")
 public class PropertyController {
 
-    @Autowired
-    private PropertyRepository propertyRepository;
-
     private final PropertyService propertyService;
+    private final AwsService awsService;
 
-    //-------------------------------------------- Register Property Method --------------------------------------------
-    @PostMapping
-    public void registerProperty(@RequestBody @Valid DTORegisterProperty dtoRegisterProperty) {
-        propertyRepository.save(new Property(dtoRegisterProperty));
-        System.out.println("\n" + dtoRegisterProperty);
+    /*Método de prueba: funciona*/
+    @PostMapping("/addImage")
+    public Image registerProperty(@RequestParam(value = "img", required = false)MultipartFile img) throws IOException {
+        return awsService.uploadImage(img);
     }
 
     //-------------------------------------------- FindAll with Filters ----------------------------------------------//

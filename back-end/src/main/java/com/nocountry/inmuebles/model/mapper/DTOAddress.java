@@ -8,8 +8,7 @@ public record DTOAddress(
         @NotBlank String street,
         @NotBlank String number,
         @NotBlank String complement,
-        @NotBlank String province,
-        @NotBlank String city,
         @NotBlank String locationLat,
         @NotBlank String locationLen) {
+
 }
