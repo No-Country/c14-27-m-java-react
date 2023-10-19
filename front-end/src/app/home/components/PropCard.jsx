@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PropCard() {
     return (
       <div className="card" style={{ width: '18rem' }}>
@@ -12,9 +14,9 @@ export default function PropCard() {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
-          <a href="#" className="btn btn-primary">
+          <Link href="/detail" className="btn btn-primary">
             Detalles
-          </a>
+          </Link>
         </div>
       </div>
     );

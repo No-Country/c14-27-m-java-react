@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImage from './your-logo.png';
+
 
 const blueColor = "#6DC3FC";
 
@@ -12,14 +12,14 @@ const Header = () => {
   };
 
     return (
-      <div className="container">
+      <div className="">
         <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <a href="/" className="d-flex align-items-center mb-2 mb-lg-0 text-blue text-decoration-none">
           <div className="rounded-circle overflow-hidden" style={{ width: '50px', height: '50px' }}>
-            <img src={logoImage} alt="Your Logo" className="w-100 h-100" />
+            <img src={'https://previews.123rf.com/images/glopphy/glopphy1509/glopphy150900071/45542269-grupo-inmobiliario-de-dise%C3%B1o-de-negocios-logotipo-de-casas.jpg'} alt="Your Logo" className="w-100 h-100" />
           </div>
           </a>
-
+      
           <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="#" className="nav-link px-2 text-black">Nombre</a></li>
             <li><a href="#" className="nav-link px-2 text-blue">Comprar</a></li>
