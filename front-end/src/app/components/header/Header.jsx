@@ -1,7 +1,7 @@
 import React from 'react';
-import logoImage from './your-logo.png'; // Import your logo image
+import logoImage from './your-logo.png';
 
-const blueColor = "#6DC3FC"; // Define the desired blue color
+const blueColor = "#6DC3FC";
 
 
 const Header = () => {
@@ -21,7 +21,7 @@ const Header = () => {
           </a>
 
           <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" className="nav-link px-2 text-secondary">Nombre</a></li>
+            <li><a href="#" className="nav-link px-2 text-black">Nombre</a></li>
             <li><a href="#" className="nav-link px-2 text-blue">Comprar</a></li>
             <li><a href="#" className="nav-link px-2 text-blue">Alquilar</a></li>
             <li><a href="#" className="nav-link px-2 text-blue">Vender</a></li>
