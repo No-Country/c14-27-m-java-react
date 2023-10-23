@@ -53,4 +53,7 @@ public interface PropertyMapper {
     User toEntityUser(DTOUser dtoUser);
     //User --> DTOUser
     DTOUser toDtoUser(User user);
+    Property requestToProperty(PropertyRequest propertyRequest);
+    PropertyResponse propertyToResponse(Property entity);
+    Property updateProperty(Property property, PropertyRequest propertyRequest);
 }

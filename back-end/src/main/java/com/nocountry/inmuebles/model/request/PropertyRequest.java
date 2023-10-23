@@ -25,6 +25,7 @@ public class PropertyRequest {
     @NotBlank private String price;
     @NotBlank private String square_meter;
     @NotBlank private String bedrooms;
+    @NotBlank private String bathrooms;
     @NotBlank private String contract_type;
     @NotBlank private String state;
     @NotBlank private Long user_id;

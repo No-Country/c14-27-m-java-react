@@ -14,5 +14,4 @@ import lombok.Setter;
 public class ImageResponse {
     private Long id;
     private String route;
-    private Property property;
 }

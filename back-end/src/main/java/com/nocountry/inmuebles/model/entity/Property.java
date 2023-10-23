@@ -1,6 +1,7 @@
 package com.nocountry.inmuebles.model.entity;
 
-import com.nocountry.inmuebles.model.mapper.DTORegisterProperty;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,14 +19,17 @@ public class Property {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "property_type_id")
     private PropertyType property_type;
     @Embedded
     private Address address;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "province_id")
     private Province province;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "city_id")
     private City city;
     private String price;
@@ -35,9 +39,11 @@ public class Property {
     private String contract_type;
     private String state;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="user_id")
     private User user_registration;
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference
     private List<Image> property_image;
     private String registration_date;
     private String registration_time;

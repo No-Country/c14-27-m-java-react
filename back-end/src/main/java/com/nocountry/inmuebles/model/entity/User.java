@@ -1,5 +1,7 @@
 package com.nocountry.inmuebles.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,5 +24,7 @@ public class User {
     private String email;
     private String password;
     @OneToMany(mappedBy = "user_registration", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference
+    @JsonIgnore
     private List<Property> property;
 }

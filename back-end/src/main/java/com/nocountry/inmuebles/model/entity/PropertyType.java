@@ -1,5 +1,7 @@
 package com.nocountry.inmuebles.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,5 +20,7 @@ public class PropertyType {
     private Long id;
     private String description;
     @OneToMany(mappedBy = "property_type", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference
+    @JsonIgnore
     private List<Property> properties;
 }

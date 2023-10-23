@@ -194,4 +194,67 @@ public class PropertyMapperImpl implements PropertyMapper{
                         .collect(Collectors.toList()))
                 .build();
     }
+    @Override
+    public Property requestToProperty(PropertyRequest propertyRequest) {
+        return Property.builder()
+                .address(Address.builder()
+                        .street(propertyRequest.getAddress().getStreet())
+                        .number(propertyRequest.getAddress().getNumber())
+                        .complement(propertyRequest.getAddress().getComplement())
+                        .location_lat(propertyRequest.getAddress().getLocation_lat())
+                        .location_len(propertyRequest.getAddress().getLocation_len())
+                        .build())
+                .price(propertyRequest.getPrice())
+                .square_meter(propertyRequest.getSquare_meter())
+                .bedrooms(propertyRequest.getBedrooms())
+                .bathrooms(propertyRequest.getBathrooms())
+                .contract_type(propertyRequest.getContract_type())
+                .state(propertyRequest.getState())
+                .registration_date(propertyRequest.getRegistration_date())
+                .registration_time(propertyRequest.getRegistration_time())
+                .name(propertyRequest.getName())
+                .description(propertyRequest.getDescription())
+                .noted(propertyRequest.getNoted())
+                .build();
+    }
+    @Override
+    public PropertyResponse propertyToResponse(Property entity) {
+        return PropertyResponse.builder()
+                .id(entity.getId())
+                .property_type(entity.getProperty_type())
+                .address(entity.getAddress())
+                .province(entity.getProvince())
+                .city(entity.getCity())
+                .price(entity.getPrice())
+                .square_meter(entity.getSquare_meter())
+                .bedrooms(entity.getBedrooms())
+                .bathrooms(entity.getBathrooms())
+                .contract_type(entity.getContract_type())
+                .state(entity.getState())
+                .user_registration(entity.getUser_registration())
+                .property_image(entity.getProperty_image().stream()
+                        .map(i -> imageMapper.imageToResponse(i))
+                        .collect(Collectors.toList()))
+                .registration_date(entity.getRegistration_date())
+                .registration_time(entity.getRegistration_time())
+                .name(entity.getName())
+                .description(entity.getDescription())
+                .noted(entity.getNoted())
+                .build();
+    }
+    public Property updateProperty(Property property, PropertyRequest propertyRequest){
+        property.setAddress(propertyRequest.getAddress());
+        property.setPrice(propertyRequest.getPrice());
+        property.setSquare_meter(propertyRequest.getSquare_meter());
+        property.setBedrooms(propertyRequest.getBedrooms());
+        property.setBathrooms(propertyRequest.getBathrooms());
+        property.setContract_type(propertyRequest.getContract_type());
+        property.setState(propertyRequest.getState());
+        property.setRegistration_time(propertyRequest.getRegistration_time());
+        property.setRegistration_date(propertyRequest.getRegistration_date());
+        property.setName(propertyRequest.getName());
+        property.setDescription(propertyRequest.getDescription());
+        property.setNoted(propertyRequest.getNoted());
+        return property;
+    }
 }

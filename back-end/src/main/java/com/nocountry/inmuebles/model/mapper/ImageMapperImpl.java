@@ -11,7 +11,6 @@ public class ImageMapperImpl implements ImageMapper{
         return ImageResponse.builder()
                 .id(img.getId())
                 .route(img.getRoute())
-                .property(img.getProperty())
                 .build();
     }
 }

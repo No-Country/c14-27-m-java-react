@@ -1,5 +1,6 @@
 package com.nocountry.inmuebles.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class Image {
     private Long id;
     private String route;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "property_id")
     private Property property;
 }
