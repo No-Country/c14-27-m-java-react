@@ -57,10 +57,19 @@ public class PropertyController {
     }
     //-------------------------------------------- FindAll with Filters ----------------------------------------------//
     @GetMapping
-    public ResponseEntity<Page<DTORegisterProperty>> findAll(@RequestParam(required = false) Boolean noted,
+    public ResponseEntity<Page<PropertyResponse>> findAll(@RequestParam(required = false) Boolean noted,
                                                   @RequestParam(required = false) String province,
                                                   @RequestParam(required = false) String city,
+                                                  @RequestParam(required = false) String type,
+                                                  @RequestParam(required = false) Double minimumPrice,
+                                                  @RequestParam(required = false) Double maximumPrice,
+                                                  @RequestParam(required = false) Integer bedrooms,
+                                                  @RequestParam(required = false) Integer bathrooms,
+                                                  @RequestParam(required = false) Integer minimumSquareMeter,
+                                                  @RequestParam(required = false) Integer maximumSquareMeter,
+                                                  @RequestParam(required = false) Boolean state,
                                                   Pageable pageable){
-        return ResponseEntity.ok(propertyService.findAll(province,city,noted,pageable));
+        return ResponseEntity.ok(propertyService.findAll(province,city,noted,type,minimumPrice,maximumPrice,bedrooms,bathrooms
+                ,minimumSquareMeter,maximumSquareMeter,state,pageable));
     }
 }
