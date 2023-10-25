@@ -14,7 +14,7 @@ public interface PropertyService {
     Page<PropertyResponse> findAll(String province, String city, Boolean noted,String type,
                                    Double minimumPrice,Double maximumPrice,Integer bedrooms,
                                    Integer bathrooms,Integer minimumSquareMeter,Integer maximumSquareMeter,
-                                   Boolean state,Pageable pageable);
+                                   Boolean state,String contractType,Pageable pageable);
     PropertyResponse createProperty(List<MultipartFile> file, PropertyRequest propertyRequest);
     List<PropertyResponse> getAll();
     PropertyResponse getById(Long id);

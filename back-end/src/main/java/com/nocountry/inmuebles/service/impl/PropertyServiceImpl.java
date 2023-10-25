@@ -41,11 +41,11 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public Page<PropertyResponse> findAll(String province, String city, Boolean noted,String type , Double minimumPrice,
                                           Double maximumPrice,Integer bedrooms,Integer bathrooms,Integer minimumSquareMeter,
-                                          Integer maximumSquareMeter,Boolean state,Pageable pageable) {
+                                          Integer maximumSquareMeter,Boolean state,String contractType,Pageable pageable) {
 
         PropertySpecification specification = new PropertySpecification(noted,province,city,type,minimumPrice,maximumPrice,
                                                                         bedrooms,bathrooms,minimumSquareMeter,maximumSquareMeter,
-                                                                        state);
+                                                                        state,contractType);
 
         Page<PropertyResponse> response =propertyRepository.findAll(specification,pageable).map(propertyMapper::propertyToResponse);
 
