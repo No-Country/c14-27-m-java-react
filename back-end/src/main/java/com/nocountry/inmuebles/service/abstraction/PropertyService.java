@@ -11,7 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface PropertyService {
-    Page<DTORegisterProperty> findAll(String province, String city, Boolean noted, Pageable pageable);
+    Page<PropertyResponse> findAll(String province, String city, Boolean noted,String type,
+                                   Double minimumPrice,Double maximumPrice,Integer bedrooms,
+                                   Integer bathrooms,Integer minimumSquareMeter,Integer maximumSquareMeter,
+                                   Boolean state,Pageable pageable);
     PropertyResponse createProperty(List<MultipartFile> file, PropertyRequest propertyRequest);
     List<PropertyResponse> getAll();
     PropertyResponse getById(Long id);

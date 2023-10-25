@@ -19,12 +19,12 @@ public class PropertyResponse implements Serializable {
     private final Address address;
     private final Province province;
     private final City city;
-    private final String price;
-    private final String square_meter;
-    private final String bedrooms;
-    private final String bathrooms;
+    private final Double price;
+    private final Integer square_meter;
+    private final Integer bedrooms;
+    private final Integer bathrooms;
     private final String contract_type;
-    private final String state;
+    private final Boolean state;
     private final User user_registration;
     private final List<ImageResponse> property_image;
     private final String registration_date;
