@@ -26,6 +26,7 @@ public class PropertySpecification implements Specification<Property> {
     private Integer minimumSquareMeter;
     private Integer maximumSquareMeter;
     private Boolean state;
+    private String contractType;
     @Override
     public Predicate toPredicate(Root<Property> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
         List<Predicate> lista = new ArrayList<>();
@@ -62,6 +63,9 @@ public class PropertySpecification implements Specification<Property> {
         }
         if(state!=null){
             lista.add(cb.equal(root.get("state"),state));
+        }
+        if(contractType!=null){
+            lista.add(cb.equal(root.get("contract_type"),contractType));
         }
         return cb.and(lista.toArray(new Predicate[lista.size()]));
     }
