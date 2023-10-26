@@ -1,52 +1,38 @@
 import React from 'react';
 
-const Form = () => {
+function Register() {
   return (
-    <div className="row align-items-stretch justify-content-stretch">
-      <div className="col-md-10">
-        <div className="form h-100 contact-wrap p-3">
-          <h3 className="text">Contacto</h3>
-          <form className="mb-5">
+    <div className="container text-center p-3">
+      <h2>Registrate!</h2>
+      <form className="mb-5">
             <div className="row">
-              <div className="col-md-6 form-group mb-3">
+              <div className="col-md-12 form-group mb-3">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Nombre"
                 />
               </div>
-              <div className="col-md-6 form-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Apellido"
-                />
-              </div>
               <div className="col-md-12 form-group mb-3">
                 <input
                   type="email"
                   className="form-control"
-                  placeholder="Mail"
+                  placeholder="Email"
                 />
               </div>
               <div className="col-md-12 form-group mb-3">
                 <input
-                  type="number"
+                  type="password"
                   className="form-control"
-                  placeholder="Teléfono"
+                  placeholder="Contraseña"
                 />
               </div>
-            </div>
-            <div className="row mb-2">
               <div className="col-md-12 form-group mb-3">
-                <textarea
+                <input
+                  type="password"
                   className="form-control"
-                  name="message"
-                  id="message"
-                  cols="30"
-                  rows="6"
-                  placeholder="Mensaje"
-                ></textarea>
+                  placeholder="Repetir Contraseña"
+                />
               </div>
             </div>
             <div className="row mb-2">
@@ -55,17 +41,14 @@ const Form = () => {
               <div className="col-md-5 form-group text-center">
                 <input
                   type="submit"
-                  value="Enviar"
+                  value="Registrarse"
                   className="btn btn-block btn-primary rounded-0 py-2 px-4"
                 />
               </div>
             </div>
           </form>
-        </div>
-      </div>
     </div>
   );
-};
+}
 
-export default Form;
-
+export default Register;

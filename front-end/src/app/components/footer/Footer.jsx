@@ -20,9 +20,9 @@ function Footer() {
               </a>
             </h6>
           </div>
-          <div className="col-md-2 d-flex flex-wrap justify-content-evenly">
+          <div className="col-md-2 d-flex flex-wrap justify-content-center">
             <div
-              className="rounded-circle overflow-hidden"
+              className="rounded-circle overflow-hidden mx-1"
               style={{ width: "25px", height: "25px" }}
             >
               <img

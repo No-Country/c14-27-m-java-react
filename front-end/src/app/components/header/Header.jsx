@@ -29,11 +29,13 @@ const Header = () => {
           </ul>
 
             <div className="ml-3 mr-3 py-2">
-              <button className="btn btn-primary mx-1 text-primary" style={registerButtonStyle}>
+              <a href='/login'><button className="btn btn-primary mx-1 text-primary" style={registerButtonStyle}>
               Iniciar Sesión
               </button>
+              </a>
+              <a href='/register'>
               <button className="btn btn-primary mx-4" >Registrarse</button>
-            </div>
+              </a></div>
         </div>
       </div>
     );
