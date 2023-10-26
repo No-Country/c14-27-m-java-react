@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import data from "../../dataHardcodeada/home";
+import Link from "next/link";
 
 export default function HomeComponent() {
   const [selectedProvince, setSelectedProvince] = useState("");
@@ -65,9 +66,9 @@ export default function HomeComponent() {
             />
           </div>
           <div className="col">
-            <button className="btn btn-primary" onClick={handleSearch}>
+            <Link href="/detail" className="btn btn-primary" onClick={handleSearch}>
               Buscar
-            </button>
+            </Link>
           </div>
         </div>
       </div>

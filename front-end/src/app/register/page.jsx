@@ -2,7 +2,7 @@ import React from 'react';
 
 function Register() {
   return (
-    <div className="container text-center p-3">
+    <div className={`container text-center p-3 `} style={{ height: '100vh' }}>
       <h2>Registrate!</h2>
       <form className="mb-5">
             <div className="row">

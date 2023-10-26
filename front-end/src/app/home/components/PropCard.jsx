@@ -1,24 +1,30 @@
 import Link from "next/link";
 
-export default function PropCard() {
-    return (
-      <div className="card" style={{ width: '18rem' }}>
-        <img
-          src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/1236a471085657.5bb93caa3d77c.png"
-          className="card-img-top"
-          alt="Inmueble"
-        />
-        <div className="card-body">
-          <h5 className="card-title">Inmueble</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <Link href="/detail" className="btn btn-primary">
-            Detalles
-          </Link>
-        </div>
-      </div>
-    );
+export default function PropCard({ data }) {
+  const maxDescriptionLength = 100;
+
+  let truncatedDescription = data ? data.description : 'Some quick example text to build on the card title and make up the bulk of the cards content.';
+
+  if (truncatedDescription.length > maxDescriptionLength) {
+    truncatedDescription = truncatedDescription.substring(0, maxDescriptionLength) + '...';
   }
-  
+
+  return (
+    <div className="card" style={{ width: '20rem', margin: '2rem'}}>
+      <img
+        src={data && data.property_image && data.property_image[0] ? data.property_image[0].route : "https://www.el-carabobeno.com/minianuncios/wp-content/uploads/2023/08/cartoon-house-and-the-sun-in-the-grass-field-vector.jpg"}
+        className="card-img-top"
+        alt="Inmueble"
+      />
+      <div className="card-body">
+        <h5 className="card-title">{data ? data.name : 'Nombre'}</h5>
+        <p className="card-text">
+          {truncatedDescription}
+        </p>
+        <Link href="/detail" className="btn btn-primary">
+          Detalles
+        </Link>
+      </div>
+    </div>
+  );
+}

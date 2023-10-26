@@ -1,27 +1,65 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import styles from './navFilter.module.css';
+import axios from 'axios';
 
 export default function NavFilter() {
+  const [filters, setFilters] = useState({
+    property_type: '',
+    contract_type: '',
+    bedrooms: '',
+    bathrooms: '',
+  });
+
+  const handleSearch = () => {
+    const { property_type, contract_type, bedrooms, bathrooms } = filters;
+
+    const queryParams = new URLSearchParams();
+
+    if (property_type) {
+      queryParams.append('property_type', property_type);
+    }
+    if (contract_type) {
+      queryParams.append('contract_type', contract_type);
+    }
+    if (bedrooms) {
+      queryParams.append('bedrooms', bedrooms);
+    }
+    if (bathrooms) {
+      queryParams.append('bathrooms', bathrooms);
+    }
+
+    const queryString = queryParams.toString();
+
+    axios.get(`http://localhost:8080/property?${queryString}`)
+      .then((response) => {
+        console.log('DataFilter:', response.data);
+        // Aquí puedes hacer lo que necesites con la respuesta
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  };
   return (
     <div className={styles.navbar}>
       <div className={styles.filter}>
-        <select id="property_type" name="property_type" class="form-select" aria-label="Default select example">
-          <option value="property_type" disabled selected>Tipo de propiedad</option>
+        <select id="property_type" name="property_type" className="form-select" aria-label="Default select example">
+          <option value="property_type" disabled defaultValue>Tipo de propiedad</option>
           <option value="casa">Casa</option>
           <option value="departamento">Departamento</option>
           <option value="terreno">Terreno</option>
         </select>
       </div>
       <div className={styles.filter}>
-        <select id="contract_type" name="contract_type" class="form-select" aria-label="Default select example">
-          <option value="contract_type" disabled selected>Tipo de contrato</option>
+        <select id="contract_type" name="contract_type" className="form-select" aria-label="Default select example">
+          <option value="contract_type" disabled defaultValue>Tipo de contrato</option>
           <option value="venta">Venta</option>
           <option value="alquiler">Alquiler</option>
         </select>
       </div>
       <div className={styles.filter}>
-        <select id="bedrooms" name="bedrooms" class="form-select" aria-label="Default select example">
-          <option value="bedrooms" disabled selected>Habitaciones</option>
+        <select id="bedrooms" name="bedrooms" className="form-select" aria-label="Default select example">
+          <option value="bedrooms" disabled defaultValue>Habitaciones</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -30,12 +68,15 @@ export default function NavFilter() {
         </select>
       </div>
       <div className={styles.filter}>
-        <select id="bathrooms" name="bathrooms" class="form-select" aria-label="Default select example">
-          <option value="bathrooms" disabled selected>Baños</option>
+        <select id="bathrooms" name="bathrooms" className="form-select" aria-label="Default select example">
+          <option value="bathrooms" disabled defaultValue>Baños</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
+      </div>
+      <div className={styles.filter}>
+        <button onClick={handleSearch} className="btn btn-primary">Buscar</button>
       </div>
     </div>
   );

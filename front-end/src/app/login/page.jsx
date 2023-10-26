@@ -1,8 +1,9 @@
 import React from 'react';
 
+
 function Login() {
   return (
-    <div className="container text-center p-3">
+    <div className={`container text-center p-3 `} style={{ height: '100vh' }}>
       <h2>Bienvenido</h2>
       <form>
         <div className="form-group row justify-content-center">

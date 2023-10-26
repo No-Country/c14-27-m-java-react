@@ -18,6 +18,7 @@ import java.util.List;
 
 
 @RequiredArgsConstructor
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/property")
 public class PropertyController {
