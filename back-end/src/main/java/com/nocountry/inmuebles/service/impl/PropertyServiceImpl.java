@@ -1,6 +1,7 @@
 package com.nocountry.inmuebles.service.impl;
 
 import com.nocountry.inmuebles.InmueblesApplication;
+import com.nocountry.inmuebles.exception.NotFoundException;
 import com.nocountry.inmuebles.model.entity.*;
 import com.nocountry.inmuebles.model.mapper.DTORegisterProperty;
 import com.nocountry.inmuebles.model.mapper.PropertyMapper;
@@ -38,9 +39,20 @@ public class PropertyServiceImpl implements PropertyService {
     private final PropertyMapper propertyMapper;
     private final AwsService awsService;
     @Override
-    public Page<DTORegisterProperty> findAll(String province, String city, Boolean noted, Pageable pageable) {
-        PropertySpecification specification = new PropertySpecification(noted,province,city);
-        return propertyRepository.findAll(specification,pageable).map(propertyMapper::toDto);
+    public Page<PropertyResponse> findAll(String province, String city, Boolean noted,String type , Double minimumPrice,
+                                          Double maximumPrice,Integer bedrooms,Integer bathrooms,Integer minimumSquareMeter,
+                                          Integer maximumSquareMeter,Boolean state,String contractType,Pageable pageable) {
+
+        PropertySpecification specification = new PropertySpecification(noted,province,city,type,minimumPrice,maximumPrice,
+                                                                        bedrooms,bathrooms,minimumSquareMeter,maximumSquareMeter,
+                                                                        state,contractType);
+
+        Page<PropertyResponse> response =propertyRepository.findAll(specification,pageable).map(propertyMapper::propertyToResponse);
+
+        if(response.isEmpty())
+            throw new NotFoundException("There are no properties with these filters");
+
+        return response;
     }
 
     @Override

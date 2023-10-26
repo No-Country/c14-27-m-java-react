@@ -22,12 +22,12 @@ public class PropertyRequest {
     @NotBlank private Address address;
     @NotBlank private Long province_id;
     @NotBlank private Long city_id;
-    @NotBlank private String price;
-    @NotBlank private String square_meter;
-    @NotBlank private String bedrooms;
-    @NotBlank private String bathrooms;
+    @NotBlank private Double price;
+    @NotBlank private Integer square_meter;
+    @NotBlank private Integer bedrooms;
+    @NotBlank private Integer bathrooms;
     @NotBlank private String contract_type;
-    @NotBlank private String state;
+    @NotBlank private Boolean state;
     @NotBlank private Long user_id;
     @NotBlank private String registration_date;
     @NotBlank private String registration_time;

@@ -32,12 +32,12 @@ public class Property {
     @JsonBackReference
     @JoinColumn(name = "city_id")
     private City city;
-    private String price;
-    private String square_meter;
-    private String bedrooms;
-    private String bathrooms;
+    private Double price;
+    private Integer square_meter;
+    private Integer bedrooms;
+    private Integer bathrooms;
     private String contract_type;
-    private String state;
+    private Boolean state;
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name="user_id")
