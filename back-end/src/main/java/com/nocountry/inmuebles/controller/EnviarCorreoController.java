@@ -4,7 +4,6 @@ import com.nocountry.inmuebles.service.impl.CorreoServiceImpl;
 import com.nocountry.inmuebles.util.ContactoCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/correo")
-public class EnviarCorreo {
+public class EnviarCorreoController {
 
     @Autowired
     CorreoServiceImpl correoService;

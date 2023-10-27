@@ -20,7 +20,7 @@ public class CorreoServiceImpl implements CorreoService {
         try{
             String mensaje = "Hola soy " + contacto.getName()+ " "+
                     contacto.getLast_name()+ "\n"+
-                    "y estoy interesado en la propiedad que publicaste" + contacto.getProperty_name() +"\n"+
+                    "y estoy interesado en la propiedad que publicaste: " + contacto.getProperty_name() +"\n"+
                     "este es mi numero de telefono: " + contacto.getPhone()+ "\n"+
                     "este es mi correo: " + contacto.getEmail();
 
