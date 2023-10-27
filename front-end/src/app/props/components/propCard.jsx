@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function PropCard({ data }) {
   console.log("data:", data);
-  const imageUrl = data.property_image[0].route;
+  const imageUrl = data.property_image[0]?.route;
   console.log("imageUrl:", imageUrl)
     ? data.property_image[0]
     : "https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/e00f7988125171.5e4c6027139b9.png";
@@ -45,7 +45,7 @@ export default function PropCard({ data }) {
         </p>
         <div className="d-flex justify-content-center">
           <Link
-            href={`/detail?id=${data.id}`}
+            href={`/props/${data.id}`}
             className="btn btn-primary mt-4 mb-4"
           >
             Detalles
