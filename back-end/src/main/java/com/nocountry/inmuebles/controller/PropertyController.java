@@ -36,11 +36,11 @@ public class PropertyController {
     public List<PropertyResponse> getAll(){
         return propertyService.getAll();
     }
-    @GetMapping("{id}")
+    @GetMapping("/findById/{id}")
     public PropertyResponse getById(@PathVariable("id") Long id){
         return propertyService.getById(id);
     }
-    @PutMapping("{id}")
+    @PutMapping("/update/{id}")
     public void updateProperty(@PathVariable("id") Long id,@RequestBody PropertyRequest propertyRequest) throws Exception {
         propertyService.update(id, propertyRequest);
     }
@@ -49,7 +49,7 @@ public class PropertyController {
         propertyService.delete(id);
     }
     //-------------------------------------------- FindAll with Filters ----------------------------------------------//
-    @GetMapping
+    @GetMapping("/filter")
     public ResponseEntity<Page<PropertyResponse>> findAll(@RequestParam(required = false) Boolean noted,
                                                   @RequestParam(required = false) String province,
                                                   @RequestParam(required = false) String city,
