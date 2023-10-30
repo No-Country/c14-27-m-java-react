@@ -8,28 +8,22 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "rol")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter
 @Builder
-public class User {
+public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idrol")
     private Long id;
-    private String name;
-    private String last_name;
-    private String email;
-    private String password;
-    @OneToMany(mappedBy = "user_registration", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonManagedReference
+    private String description;
+
+    @OneToMany(mappedBy = "rol")
     @JsonIgnore
-    private List<Property> property;
-
-    @ManyToOne
-    @JoinColumn(name="rol_id")
-    private Rol rol;
-
+    @JsonManagedReference
+    private List<User> listUser;
 }
