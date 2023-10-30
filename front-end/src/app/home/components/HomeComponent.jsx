@@ -1,14 +1,14 @@
-"use client";
+'use client'
 import React, { useState } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css"; // Importa el CSS de Bootstrap
-import data from "../../dataHardcodeada/home"
+import "bootstrap/dist/css/bootstrap.min.css";
+import data from "../../dataHardcodeada/home";
+import Link from "next/link";
 
 export default function HomeComponent() {
   const [selectedProvince, setSelectedProvince] = useState("");
   const [city, setCity] = useState("");
   const provinces = data.provinces;
-  console.log(provinces);
 
   const handleSearch = () => {
     if (selectedProvince && city) {
@@ -25,22 +25,24 @@ export default function HomeComponent() {
 
   return (
     <div
-      className="container d-flex align-items-center justify-content-center vh-100 mt-3"
+      className="d-flex align-items-center justify-content-center vh-100 mt-3 position-relative"
       style={{
         backgroundImage:
           "url(https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/e277df109471459.5fd475b7b4dd9.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // Nuevo estilo para la capa de opacidad
-        padding: "2rem",
-        borderRadius: "8px",
       }}
     >
-       <div className="text-center">
-        <h1 className="mt-5">Encuentra tu nuevo Hogar</h1>
-        <p>Tenemos la mejor opcion para vos</p>
-        <div className="row mb-3">
-          <div className="col">
+      <div className="position-absolute top-0 start-0 w-100 h-100"
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+        }}
+      />
+      <div className="text-center position-relative z-index-2">
+        <h1 className="mt-5 text-white">Encuentra tu nuevo Hogar</h1>
+        <p className="text-white">Tenemos la mejor opción para vos</p>
+        <div className="d-flex justify-content-center align-items-center mb-3">
+          <div className="col m-2">
             <select
               className="form-select"
               value={selectedProvince}
@@ -54,7 +56,7 @@ export default function HomeComponent() {
               ))}
             </select>
           </div>
-          <div className="col">
+          <div className="col m-2">
             <input
               className="form-control"
               type="text"
@@ -63,10 +65,10 @@ export default function HomeComponent() {
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
-          <div className="col" style={{marginRight: 200}}>
-            <button className="btn btn-primary"  onClick={handleSearch}>
+          <div className="col">
+            <Link href="/detail" className="btn btn-primary" onClick={handleSearch}>
               Buscar
-            </button>
+            </Link>
           </div>
         </div>
       </div>
