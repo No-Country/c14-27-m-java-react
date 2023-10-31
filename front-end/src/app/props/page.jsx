@@ -5,15 +5,15 @@ import PropCard from "./components/propCard";
 import NavFilter from "./components/navFilter";
 
 export default function PropsPage() {
-  const desarrolloApp = "http://localhost:8080";
+  const desarrolloApp = "https://c14-27-m-java-react-production.up.railway.app";
   const [propiedades, setPropiedades] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${desarrolloApp}/property`)
+      .get(`${desarrolloApp}/property/all`)
       .then((response) => {
-        console.log(response.data.content);
-        setPropiedades(response.data.content);
+        console.log(response.data);
+        setPropiedades(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -22,8 +22,8 @@ export default function PropsPage() {
 
   return (
     <div>
-      <NavFilter />
-      {propiedades.map((propiedad, index) => (
+      <NavFilter setPropiedades={setPropiedades}/>
+      {propiedades?.map((propiedad, index) => (
         <PropCard key={index} data={propiedad} />
       ))}
     </div>

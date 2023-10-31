@@ -1,65 +1,75 @@
-'use client'
-import React, { useState } from 'react';
-import styles from './navFilter.module.css';
-import axios from 'axios';
+"use client";
+import React, { useState } from "react";
+import styles from "./navFilter.module.css";
+import axios from "axios";
 
-export default function NavFilter() {
+export default function NavFilter({ setPropiedades }) {
   const [filters, setFilters] = useState({
-    property_type: '',
-    contract_type: '',
-    bedrooms: '',
-    bathrooms: '',
+    property_type: "",
+    bedrooms: "",
+    bathrooms: "",
   });
 
   const handleSearch = () => {
-    const { property_type, contract_type, bedrooms, bathrooms } = filters;
+    const { property_type, bedrooms, bathrooms } = filters;
 
     const queryParams = new URLSearchParams();
 
     if (property_type) {
-      queryParams.append('property_type', property_type);
-    }
-    if (contract_type) {
-      queryParams.append('contract_type', contract_type);
+      queryParams.append("property_type", property_type);
     }
     if (bedrooms) {
-      queryParams.append('bedrooms', bedrooms);
+      queryParams.append("bedrooms", bedrooms);
     }
     if (bathrooms) {
-      queryParams.append('bathrooms', bathrooms);
+      queryParams.append("bathrooms", bathrooms);
     }
 
     const queryString = queryParams.toString();
+    console.log('url:', queryString)
 
-    axios.get(`http://localhost:8080/property?${queryString}`)
+    axios
+      .get(`https://c14-27-m-java-react-production.up.railway.app/property/filter?${queryString}`)
       .then((response) => {
-        console.log('DataFilter:', response.data);
-        // Aquí puedes hacer lo que necesites con la respuesta
+        console.log("DataFilter:", response.data);
+        const properties = response.data.content;
+        setPropiedades(properties);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       });
   };
   return (
     <div className={styles.navbar}>
       <div className={styles.filter}>
-        <select id="property_type" name="property_type" className="form-select" aria-label="Default select example">
-          <option value="property_type" disabled defaultValue>Tipo de propiedad</option>
+        <select
+          id="property_type"
+          name="property_type"
+          className="form-select"
+          aria-label="Default select example"
+          onChange={(e) =>
+            setFilters({ ...filters, property_type: e.target.value })
+          }
+        >
+          <option value="property_type" defaultValue>
+            Tipo de propiedad
+          </option>
           <option value="casa">Casa</option>
           <option value="departamento">Departamento</option>
           <option value="terreno">Terreno</option>
         </select>
       </div>
       <div className={styles.filter}>
-        <select id="contract_type" name="contract_type" className="form-select" aria-label="Default select example">
-          <option value="contract_type" disabled defaultValue>Tipo de contrato</option>
-          <option value="venta">Venta</option>
-          <option value="alquiler">Alquiler</option>
-        </select>
-      </div>
-      <div className={styles.filter}>
-        <select id="bedrooms" name="bedrooms" className="form-select" aria-label="Default select example">
-          <option value="bedrooms" disabled defaultValue>Habitaciones</option>
+        <select
+          id="bedrooms"
+          name="bedrooms"
+          className="form-select"
+          aria-label="Default select example"
+          onChange={(e) => setFilters({ ...filters, bedrooms: e.target.value })}
+        >
+          <option value="bedrooms" defaultValue>
+            Habitaciones
+          </option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -68,15 +78,25 @@ export default function NavFilter() {
         </select>
       </div>
       <div className={styles.filter}>
-        <select id="bathrooms" name="bathrooms" className="form-select" aria-label="Default select example">
-          <option value="bathrooms" disabled defaultValue>Baños</option>
+        <select
+          id="bathrooms"
+          name="bathrooms"
+          className="form-select"
+          aria-label="Default select example"
+          onChange={(e) => setFilters({ ...filters, bathrooms: e.target.value })}
+        >
+          <option value="bathrooms" defaultValue>
+            Baños
+          </option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
       </div>
       <div className={styles.filter}>
-        <button onClick={handleSearch} className="btn btn-primary">Buscar</button>
+        <button onClick={handleSearch} className="btn btn-primary">
+          Buscar
+        </button>
       </div>
     </div>
   );

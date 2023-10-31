@@ -13,7 +13,7 @@ export default function PropCard({ data }) {
   }
 
   return (
-    <div className="card" style={{ width: "20rem", margin: "2rem" }}>
+    <div className="card" style={{ width: "50rem", margin: "2rem" }}>
       <img
         src={
           data && data.property_image && data.property_image[0]

@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/user/**", "/city/**", "/province/**", "/property/all",
-                                "/property/findById/**", "property/filter", "/correo/**").permitAll()
+                                "/property/findById/**", "property/filter", "/correo/**", "/property_type").permitAll()
                         .anyRequest()
                         .authenticated());
 

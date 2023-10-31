@@ -1,23 +1,23 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropCard from "./PropCard";
 import Link from "next/link";
 import axios from "axios";
 
 export default function DestacadasPage() {
-  const desarrolloApp = "http://localhost:8080";
+  const desarrolloApp = "https://c14-27-m-java-react-production.up.railway.app";
   const [propiedades, setPropiedades] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${desarrolloApp}/property`, {
+      .get(`${desarrolloApp}/property/filter`, {
         params: {
           noted: true,
         },
       })
       .then((response) => {
-        console.log(response.data.content);
-        setPropiedades(response.data.content);
+        const primeraSeisPropiedades = response.data.content.slice(0, 6);
+        setPropiedades(primeraSeisPropiedades);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
