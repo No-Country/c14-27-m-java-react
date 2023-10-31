@@ -2,32 +2,32 @@ import React from 'react';
 
 function Register() {
   return (
-    <div className={`container text-center p-3 `} style={{ height: '100vh' }}>
+    <div className={`container d-flex justify-content-center align-items-center text-center`} style={{ height: '80vh'  }}>
+      <form className="p-3 p-3 shadow-lg p-3 mb-5 bg-body rounded" style={{width: "50%"}}>
       <h2>Registrate!</h2>
-      <form className="mb-5">
-            <div className="row">
-              <div className="col-md-12 form-group mb-3">
+            <div className="form-group row justify-content-center">
+              <div className="col-sm-8 mb-3">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Nombre"
                 />
               </div>
-              <div className="col-md-12 form-group mb-3">
+              <div className="col-sm-8 mb-3">
                 <input
                   type="email"
                   className="form-control"
                   placeholder="Email"
                 />
               </div>
-              <div className="col-md-12 form-group mb-3">
+              <div className="col-sm-8 mb-3">
                 <input
                   type="password"
                   className="form-control"
                   placeholder="Contraseña"
                 />
               </div>
-              <div className="col-md-12 form-group mb-3">
+              <div className="col-sm-8 mb-3">
                 <input
                   type="password"
                   className="form-control"
@@ -42,7 +42,7 @@ function Register() {
                 <input
                   type="submit"
                   value="Registrarse"
-                  className="btn btn-block btn-primary rounded-0 py-2 px-4"
+                  className="btn btn-primary btn-block"
                 />
               </div>
             </div>
