@@ -1,4 +1,4 @@
-
+![image](https://github.com/No-Country/c14-27-m-java-react/assets/74664185/3abf0c78-752e-4403-9102-435071825594)
 
 ![logo2](https://github.com/No-Country/c14-27-m-java-react/assets/114450089/5ae53142-2374-4685-b531-cf903098bfd3)
 
@@ -51,7 +51,7 @@ MultiPlace es una innovadora aplicación web diseñada para simplificar el proce
 | **Alexander Cortez** |
 |<a href="https://github.com/programAlex1"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://pe.linkedin.com/in/alexander-cortez"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
-| <img src="" width=130/>|
+| <img src="https://media.licdn.com/dms/image/C4E03AQHx9SWH6FT-Rg/profile-displayphoto-shrink_200_200/0/1642633207224?e=1704326400&v=beta&t=BYk0hqsoe20fXs0_HFtfAQNb8R94C3WTajtZIXy0n78" width=130/>|
 |:-:|
 | **Milagros Sachetti** |
 |<a href="https://github.com/milagrossachetti"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://ar.linkedin.com/in/milagros-sachetti"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
