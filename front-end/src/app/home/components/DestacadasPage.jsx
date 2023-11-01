@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 import PropCard from "./PropCard";
 import Link from "next/link";
 import axios from "axios";
+import urlProdu from "@/app/dataHardcodeada/url";
 
 export default function DestacadasPage() {
-  const desarrolloApp = "https://c14-27-m-java-react-production.up.railway.app";
+  const desarrolloApp = "http://localhost:9090";
   const [propiedades, setPropiedades] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${desarrolloApp}/property/filter`, {
+      .get(`${urlProdu}/property/filter`, {
         params: {
           noted: true,
         },

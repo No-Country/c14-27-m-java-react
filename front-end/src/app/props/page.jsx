@@ -3,14 +3,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropCard from "./components/propCard";
 import NavFilter from "./components/navFilter";
+import urlProdu from "../dataHardcodeada/url";
 
 export default function PropsPage() {
-  const desarrolloApp = "https://c14-27-m-java-react-production.up.railway.app";
+  const desarrolloApp = "http://localhost:9090";
   const [propiedades, setPropiedades] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${desarrolloApp}/property/all`)
+      .get(`${urlProdu}/property/all`)
       .then((response) => {
         console.log(response.data);
         setPropiedades(response.data);
