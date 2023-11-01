@@ -1,4 +1,3 @@
-![image](https://github.com/No-Country/c14-27-m-java-react/assets/74664185/3abf0c78-752e-4403-9102-435071825594)
 
 ![logo2](https://github.com/No-Country/c14-27-m-java-react/assets/114450089/5ae53142-2374-4685-b531-cf903098bfd3)
 
