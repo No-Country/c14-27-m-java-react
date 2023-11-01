@@ -13,12 +13,10 @@ export default function NavFilter({ setPropiedades }) {
 
   const handleSearch = () => {
     const { property_type, bedrooms, bathrooms } = filters;
-    const { property_type, bedrooms, bathrooms } = filters;
 
     const queryParams = new URLSearchParams();
 
     if (property_type) {
-      queryParams.append("property_type", property_type);
       queryParams.append("property_type", property_type);
     }
     if (bedrooms) {
@@ -31,33 +29,18 @@ export default function NavFilter({ setPropiedades }) {
     const queryString = queryParams.toString();
     console.log('url:', queryString)
 
-    axios
-      .get(`${urlProdu}/property/filter?${queryString}`)
+    axios.get(`http://localhost:8080/property?${queryString}`)
       .then((response) => {
-        console.log("DataFilter:", response.data);
-        const properties = response.data.content;
-        setPropiedades(properties);
+        console.log('DataFilter:', response.data);
+        // Aquí puedes hacer lo que necesites con la respuesta
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
         console.error("Error fetching data:", error);
       });
   };
   return (
     <div className={styles.navbar}>
       <div className={styles.filter}>
-        <select
-          id="property_type"
-          name="property_type"
-          className="form-select"
-          aria-label="Default select example"
-          onChange={(e) =>
-            setFilters({ ...filters, property_type: e.target.value })
-          }
-        >
-          <option value="property_type" defaultValue>
-            Tipo de propiedad
-          </option>
         <select
           id="property_type"
           name="property_type"
@@ -86,16 +69,6 @@ export default function NavFilter({ setPropiedades }) {
           <option value="bedrooms" defaultValue>
             Habitaciones
           </option>
-        <select
-          id="bedrooms"
-          name="bedrooms"
-          className="form-select"
-          aria-label="Default select example"
-          onChange={(e) => setFilters({ ...filters, bedrooms: e.target.value })}
-        >
-          <option value="bedrooms" defaultValue>
-            Habitaciones
-          </option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -114,16 +87,6 @@ export default function NavFilter({ setPropiedades }) {
           <option value="bathrooms" defaultValue>
             Baños
           </option>
-        <select
-          id="bathrooms"
-          name="bathrooms"
-          className="form-select"
-          aria-label="Default select example"
-          onChange={(e) => setFilters({ ...filters, bathrooms: e.target.value })}
-        >
-          <option value="bathrooms" defaultValue>
-            Baños
-          </option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -131,9 +94,6 @@ export default function NavFilter({ setPropiedades }) {
         </select>
       </div>
       <div className={styles.filter}>
-        <button onClick={handleSearch} className="btn btn-primary">
-          Buscar
-        </button>
         <button onClick={handleSearch} className="btn btn-primary">
           Buscar
         </button>
