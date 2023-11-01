@@ -1,25 +1,20 @@
 import React from 'react';
 
-
 function Login() {
   return (
-    <div className={`container text-center p-3 `} style={{ height: '100vh' }}>
-      <h2>Bienvenido</h2>
-      <form>
-        <div className="form-group row justify-content-center">
-          <div className="col-sm-4 mb-3">
-            <input type="text" className="form-control form-control-sm mx-auto" id="email" placeholder="CORREO" />
-          </div>
+    <div className="container d-flex text-center justify-content-center align-items-center" style={{ height: '80vh' }}>
+      <form className="p-3 p-3 shadow-lg p-3 mb-5 bg-body rounded" style={{ width: "50%" }}>
+        <h2 className="text-center">Bienvenido</h2>
+        <div className='form-group row justify-content-center'>
+        <div className="form-group justify-content-center col-sm-8 mb-3">
+          <input type="text" className="form-control " id="email" placeholder="Correo" />
         </div>
-        <div className="form-group row justify-content-center">
-          <div className="col-sm-4 mb-3">
-            <input type="password" className="form-control form-control-sm mx-auto" id="password" placeholder="CONTRASEÑA" />
-          </div>
+        <div className="form-group col-sm-8 mb-3">
+          <input type="password" className="form-control " id="password" placeholder="Contraseña" />
         </div>
-        <div className="form-group row">
-          <div>
-            <button type="submit" className="btn btn-primary btn-block">ingresar</button>
-          </div>
+        </div>
+        <div className="form-group ">
+          <button type="submit" className="btn btn-primary btn-block ">Ingresar</button>
         </div>
       </form>
     </div>

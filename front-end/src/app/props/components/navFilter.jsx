@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "./navFilter.module.css";
 import axios from "axios";
+import urlProdu from "@/app/dataHardcodeada/url";
 
 export default function NavFilter({ setPropiedades }) {
   const [filters, setFilters] = useState({
@@ -28,12 +29,10 @@ export default function NavFilter({ setPropiedades }) {
     const queryString = queryParams.toString();
     console.log('url:', queryString)
 
-    axios
-      .get(`https://c14-27-m-java-react-production.up.railway.app/property/filter?${queryString}`)
+    axios.get(`http://localhost:8080/property?${queryString}`)
       .then((response) => {
-        console.log("DataFilter:", response.data);
-        const properties = response.data.content;
-        setPropiedades(properties);
+        console.log('DataFilter:', response.data);
+        // Aquí puedes hacer lo que necesites con la respuesta
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -91,6 +90,7 @@ export default function NavFilter({ setPropiedades }) {
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
+          <option value="4">4</option>
         </select>
       </div>
       <div className={styles.filter}>

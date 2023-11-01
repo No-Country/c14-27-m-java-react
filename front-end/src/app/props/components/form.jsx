@@ -6,6 +6,7 @@ import {
   displayFailedMessage,
   displaySuccessMessage,
 } from "@/app/components/Toastify";
+import urlProdu from "@/app/dataHardcodeada/url";
 
 const Form = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ const Form = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (!formData.name || !formData.email) {
       setError("Complete todos los campos por favor");
       return;
@@ -35,7 +37,7 @@ const Form = ({ user }) => {
     }
     try {
       const res = await axios.post(
-        "http://localhost:9090/correo/enviar",
+        `${urlProdu}/correo/enviar`,
         formData
       );
       console.log("datos enviados:", res); // Puedes quitar esto, es solo para verificar que los datos se actualizan correctamente
