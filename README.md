@@ -92,5 +92,5 @@ MultiPlace es una innovadora aplicación web diseñada para simplificar el proce
 | <img src="" width=130/>|
 |:-:|
 | **Gonzalo Suarez** |
-|<a href="https://github.com/gonzasuarez96"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/gonzalo-suarez-dev/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+|<a href="https://github.com/gonzasuarez96"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/gonzalo-suarez-dev/"><img src="https://media.licdn.com/dms/image/D4D03AQE9Q2jVlJwTrQ/profile-displayphoto-shrink_400_400/0/1689048625044?e=1704326400&v=beta&t=hUndicyb5bi69oCBayQDSAd2YqNRXYBvB3sEDW628Lg"/></a> |
 
