@@ -5,10 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Importa el CSS de Bootstrap
 import data from "../dataHardcodeada/home"
 import HomeComponent from "./components/HomeComponent";
 import DestacadasPage from "./components/DestacadasPage";
+import { getSessionStorageToken } from "../func/sessionStorage";
 
 export default function HomePage() {
-  const token = sessionStorage.getItem('token'); // Obtener el token almacenado
-
+  const token = getSessionStorageToken();
+  console.log(token);
   // Verificar si hay un token
   const isAuth = !!token;
 
