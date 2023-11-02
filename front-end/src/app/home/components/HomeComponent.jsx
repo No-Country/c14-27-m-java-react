@@ -51,13 +51,14 @@ export default function HomeComponent() {
   };
 
   const handleProvinceChange = (e) => {
-    const selectedValue = provinces.find(province => province.id === parseInt(e.target.value, 10));     
-    setSelectedProvince(selectedValue);
-    console.log('Provincia select:', selectedValue)
+    const selectedValueId = parseInt(e.target.value, 10);     
+setSelectedProvince(selectedValueId);
+
+    console.log('Provincia select:', selectedValueId)
 
     // Hacer la solicitud para obtener las ciudades
     axios
-      .get(`${urlProdu}/city/${selectedValue.id}`)
+      .get(`${urlProdu}/city/${selectedValueId}`)
       .then((response) => {
         setCities(response.data);
         console.log("cities:", response.data);
@@ -68,9 +69,10 @@ export default function HomeComponent() {
   };
 
   const handleCityChange = (e) => {
-    const selectedValue = cities.find(city => city.id === parseInt(e.target.value, 10));
-    setSelectedCity(selectedValue)
-    console.log('City select:',selectedValue)
+    const selectedValueId = parseInt(e.target.value, 10);
+setSelectedCity(selectedValueId);
+
+    console.log('City select:',selectedValueId)
   }
 
 
@@ -99,6 +101,7 @@ export default function HomeComponent() {
               className="form-select"
               value={selectedProvince}
               onChange={handleProvinceChange} // Cambiado aquí
+              name='province'
             >
               <option value="">Selecciona una provincia</option>
               {provinces?.map((province) => (
