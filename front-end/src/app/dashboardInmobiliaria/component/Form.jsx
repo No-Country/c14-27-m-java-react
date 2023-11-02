@@ -14,7 +14,7 @@ const Form = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [cities, setCities] = useState([]);
   const [provinces, setProvinces] = useState([]);
-  const [formData, setFormData] = useState({
+  const [data, setData] = useState({
     name: "",
     province: "",
     city: "",
@@ -50,8 +50,8 @@ const Form = () => {
 
   const handleProvinceChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setData({
+      ...data,
       [name]: value,
     });
     const selectedValue = provinces.find(
@@ -74,96 +74,99 @@ const Form = () => {
 
   const handleCityChange = (e) => {
     const { value } = e.target;
-    setFormData({
-      ...formData,
+    setData({
+      ...data,
       city: value,
     });
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setData({
+      ...data,
       [name]: value,
     });
   };
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
-    setFormData({
-      ...formData,
+    setData({
+      ...data,
       [name]: checked,
     });
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      image: file, // Guarda el archivo en el estado formData
+    setData({
+      ...data,
+      image: file, // Guarda el archivo en el estado data
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    const data = {
-      property_type_id: formData.propertyType,
+    const dataSubm = {
+      property_type_id: data.propertyType,
       address: {
-        street: formData.street,
-        number: formData.number,
-        complement: formData.complement,
+        street: data.street,
+        number: data.number,
+        complement: data.complement,
         location_lat: "1",
         location_len: "1",
       },
-      province_id: formData.province,
-      city_id: formData.city,
-      price: formData.price,
-      square_meter: formData.square_meter,
-      bedrooms: formData.bedrooms,
-      bathrooms: formData.bathrooms,
-      contract_type: formData.contract_type,
-      name: formData.name,
-      description: formData.description,
-      noted: formData.noted,
-      user_id: "3"
+      province_id: data.province,
+      city_id: data.city,
+      price: data.price,
+      square_meter: data.square_meter,
+      bedrooms: data.bedrooms,
+      bathrooms: data.bathrooms,
+      contract_type: data.contract_type,
+      name: data.name,
+      description: data.description,
+      noted: data.noted,
+      user_id: "3",
+      registration_date: "2023-10-07",
+      registration_time: "12:48",
+      state: true,
+      img: data.image
     };
-    const formDataToSend = new FormData(); // Cambiado el nombre de la variable
-    formDataToSend.append("property_type_id", data.property_type_id);
-    formDataToSend.append("address", JSON.stringify(data.address)); // Convierte a JSON y agrega
-    formDataToSend.append("province_id", data.province_id);
-    formDataToSend.append("city_id", data.city_id);
-    formDataToSend.append("price", data.price);
-    formDataToSend.append("square_meter", data.square_meter);
-    formDataToSend.append("bedrooms", data.bedrooms);
-    formDataToSend.append("bathrooms", data.bathrooms);
-    formDataToSend.append("contract_type", data.contract_type);
-    formDataToSend.append("name", data.name);
-    formDataToSend.append("description", data.description);
-    formDataToSend.append("noted", data.noted);
-    formDataToSend.append("user_id", data.user_id);
-  
-    if (formData.image) {
-      formDataToSend.append("image", formData.image);
+    console.log("Form submitted:", dataSubm);
+    console.log("Form data:", data);
+
+    const formData = new FormData();
+
+    formData.append("property_type_id", dataSubm.property_type_id);
+    formData.append("address", JSON.stringify(dataSubm.address));
+    formData.append("province_id", dataSubm.province_id);
+    formData.append("city_id", dataSubm.city_id);
+    formData.append("price", dataSubm.price);
+    formData.append("square_meter", dataSubm.square_meter);
+    formData.append("bedrooms", dataSubm.bedrooms);
+    formData.append("bathrooms", dataSubm.bathrooms);
+    formData.append("contract_type", dataSubm.contract_type);
+    formData.append("name", dataSubm.name);
+    formData.append("description", dataSubm.description);
+    formData.append("noted", dataSubm.noted);
+    formData.append("user_id", dataSubm.user_id);
+    formData.append("registration_date", dataSubm.registration_date);
+    formData.append("registration_time", dataSubm.registration_time);
+    formData.append("state", dataSubm.state);
+
+    if (dataSubm.img) {
+      formData.append("image", dataSubm.img);
     }
+    console.log('formData:',formData)
     try {
-      const res = await axiosInstance.post(
-        `${urlProdu}/property/add`,
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log("datos enviados:", data);
-      console.log("resServer:", res);
-      displaySuccessMessage("Propiedad Publicada");
+      const response = await axios.post(`${urlProdu}/property/add`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnb256YXN1YXJlejEwMEBnbWFpbC5jb20iLCJyb2xlIjoic2VsbGVyIiwiZXhwIjoxNjk4OTQxODkzLCJpYXQiOjE2OTg5MzgyOTN9.Auq8jOdIcOH6sM9PUlbwyrCIV4dw49ZBaQmK0yni3tE`
+        },
+      });
+      console.log("Response:", response.data);
     } catch (error) {
-      console.log(error);
-      displayFailedMessage("No se pudo publicar la propiedad");
-      console.log("datos enviados:", formDataToSend);
-      console.log("data enviada:", data);
+      console.error("Error:", error);
     }
   };
   
@@ -179,7 +182,7 @@ const Form = () => {
           className="form-control"
           id="name"
           name="name"
-          value={formData.name}
+          value={data.name}
           onChange={handleInputChange}
         />
       </div>
@@ -191,7 +194,7 @@ const Form = () => {
           className="form-select"
           id="propertyType"
           name="propertyType"
-          value={formData.propertyType}
+          value={data.propertyType}
           onChange={handleInputChange}
         >
           <option value="">Selecciona un tipo de propiedad</option>
@@ -208,7 +211,7 @@ const Form = () => {
         </label>
         <select
           className="form-select"
-          value={formData.province} // Cambiar de selectedProvince.description a formData.province
+          value={data.province} // Cambiar de selectedProvince.description a data.province
           onChange={handleProvinceChange}
           name="province"
         >
@@ -226,7 +229,7 @@ const Form = () => {
         </label>
         <select
           className="form-select"
-          value={formData.city}
+          value={data.city}
           name="city"
           onChange={handleCityChange}
         >
@@ -247,7 +250,7 @@ const Form = () => {
           className="form-control"
           id="price"
           name="price"
-          value={formData.price}
+          value={data.price}
           onChange={handleInputChange}
         />
       </div>
@@ -260,7 +263,7 @@ const Form = () => {
           className="form-control"
           id="square_meter"
           name="square_meter"
-          value={formData.square_meter}
+          value={data.square_meter}
           onChange={handleInputChange}
         />
       </div>
@@ -273,7 +276,7 @@ const Form = () => {
           className="form-control"
           id="bedrooms"
           name="bedrooms"
-          value={formData.bedrooms}
+          value={data.bedrooms}
           onChange={handleInputChange}
         />
       </div>
@@ -286,7 +289,7 @@ const Form = () => {
           className="form-control"
           id="bathrooms"
           name="bathrooms"
-          value={formData.bathrooms}
+          value={data.bathrooms}
           onChange={handleInputChange}
         />
       </div>
@@ -298,7 +301,7 @@ const Form = () => {
           className="form-select"
           id="contract_type"
           name="contract_type"
-          value={formData.contract_type}
+          value={data.contract_type}
           onChange={handleInputChange}
         >
           <option value="">Selecciona un tipo de contrato</option>
@@ -314,7 +317,7 @@ const Form = () => {
           className="form-control"
           id="description"
           name="description"
-          value={formData.description}
+          value={data.description}
           onChange={handleInputChange}
         />
       </div>
@@ -327,7 +330,7 @@ const Form = () => {
           className="form-control"
           id="street"
           name="street"
-          value={formData.street}
+          value={data.street}
           onChange={handleInputChange}
         />
       </div>
@@ -340,7 +343,7 @@ const Form = () => {
           className="form-control"
           id="number"
           name="number"
-          value={formData.number}
+          value={data.number}
           onChange={handleInputChange}
         />
       </div>
@@ -353,7 +356,7 @@ const Form = () => {
           className="form-control"
           id="complement"
           name="complement"
-          value={formData.complement}
+          value={data.complement}
           onChange={handleInputChange}
         />
       </div>
@@ -376,7 +379,7 @@ const Form = () => {
           className="form-check-input"
           id="noted"
           name="noted"
-          checked={formData.noted}
+          checked={data.noted}
           onChange={handleCheckboxChange}
         />
         <label className="form-check-label" htmlFor="noted">
