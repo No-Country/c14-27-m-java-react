@@ -209,9 +209,9 @@ public class PropertyMapperImpl implements PropertyMapper{
                 .bedrooms(propertyRequest.getBedrooms())
                 .bathrooms(propertyRequest.getBathrooms())
                 .contract_type(propertyRequest.getContract_type())
-                .state(propertyRequest.getState())
-                .registration_date(propertyRequest.getRegistration_date())
-                .registration_time(propertyRequest.getRegistration_time())
+                //.state(propertyRequest.getState())
+                //.registration_date(propertyRequest.getRegistration_date())
+                //.registration_time(propertyRequest.getRegistration_time())
                 .name(propertyRequest.getName())
                 .description(propertyRequest.getDescription())
                 .noted(propertyRequest.getNoted())
@@ -249,9 +249,9 @@ public class PropertyMapperImpl implements PropertyMapper{
         property.setBedrooms(propertyRequest.getBedrooms());
         property.setBathrooms(propertyRequest.getBathrooms());
         property.setContract_type(propertyRequest.getContract_type());
-        property.setState(propertyRequest.getState());
-        property.setRegistration_time(propertyRequest.getRegistration_time());
-        property.setRegistration_date(propertyRequest.getRegistration_date());
+        //property.setState(propertyRequest.getState());
+        //property.setRegistration_time(propertyRequest.getRegistration_time());
+        //property.setRegistration_date(propertyRequest.getRegistration_date());
         property.setName(propertyRequest.getName());
         property.setDescription(propertyRequest.getDescription());
         property.setNoted(propertyRequest.getNoted());

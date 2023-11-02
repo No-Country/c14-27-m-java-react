@@ -5,6 +5,7 @@ import com.nocountry.inmuebles.model.request.PropertyRequest;
 import com.nocountry.inmuebles.model.response.PropertyResponse;
 import com.nocountry.inmuebles.service.abstraction.AwsService;
 import com.nocountry.inmuebles.service.abstraction.PropertyService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,7 @@ public class PropertyController {
     //-------------------------------------------- Register Property Method --------------------------------------------
     @PostMapping("/add")
     public PropertyResponse registerProperty(@RequestPart(value = "img", required = false)List<MultipartFile> img,
-                                             @RequestPart PropertyRequest propertyRequest) {
+                                             @RequestPart @Valid PropertyRequest propertyRequest) {
         return propertyService.createProperty(img, propertyRequest);
     }
     @GetMapping("/all")

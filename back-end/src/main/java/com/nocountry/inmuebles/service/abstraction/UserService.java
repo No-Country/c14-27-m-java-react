@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface UserService {
     List<User> listAll();
-    ResponseEntity<String> login(Map<String, String> requestMap);
+    ResponseEntity<?> login(Map<String, String> requestMap);
     ResponseEntity<String> signUp(Map<String, String> requestMap);
 
 }

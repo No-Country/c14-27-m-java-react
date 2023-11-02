@@ -33,7 +33,7 @@ function Login() {
         sessionStorage.setItem("token", token);
         displaySuccessMessage("Sesion Iniciada");
         setTimeout(() => {
-          router.push("/"); // Redirigimos a '/'
+          window.location.href = '/';
         }, 2000);
       } catch (error) {
         console.log(error);
@@ -94,6 +94,7 @@ function Login() {
               {error}
             </div>
           )}
+      <label className="m-4">Esto es solo para empleados de MultiPlace</label>
         </form>
       </div>
       <ToastContainer style={{ marginTop: "100px" }} />

@@ -17,7 +17,7 @@ export default function NavFilter({ setPropiedades }) {
     const queryParams = new URLSearchParams();
 
     if (property_type) {
-      queryParams.append("property_type", property_type);
+      queryParams.append("type", property_type);
     }
     if (bedrooms) {
       queryParams.append("bedrooms", bedrooms);

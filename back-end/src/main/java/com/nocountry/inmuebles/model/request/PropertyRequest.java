@@ -18,20 +18,17 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class PropertyRequest {
-    @NotBlank private Long property_type_id;
-    @NotBlank private Address address;
-    @NotBlank private Long province_id;
-    @NotBlank private Long city_id;
-    @NotBlank private Double price;
-    @NotBlank private Integer square_meter;
-    @NotBlank private Integer bedrooms;
-    @NotBlank private Integer bathrooms;
+    @NotNull private Long property_type_id;
+    @NotNull private Address address;
+    @NotNull private Long province_id;
+    @NotNull private Long city_id;
+    @NotNull private Double price;
+    @NotNull private Integer square_meter;
+    @NotNull private Integer bedrooms;
+    @NotNull private Integer bathrooms;
     @NotBlank private String contract_type;
-    @NotBlank private Boolean state;
-    @NotBlank private Long user_id;
-    @NotBlank private String registration_date;
-    @NotBlank private String registration_time;
+    @NotNull private Long user_id;
     @NotBlank private String name;
     private String description;
-    @NotBlank private Boolean noted;
+    @NotNull private Boolean noted;
 }

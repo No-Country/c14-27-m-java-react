@@ -1,14 +1,33 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { getSessionStorageToken } from "@/app/func/sessionStorage";
 
 const blueColor = "#6DC3FC";
 
 const Header = () => {
+  const [token, setToken] = useState(null);
+  useEffect(() => {
+    const tokenS = getSessionStorageToken();
+    setToken(tokenS);
+  }, []);
+
+  function isAuth() {
+    return !!token;
+  }
+  const auth = isAuth();
+  console.log(auth);
+
+  console.log("isAuth?:", isAuth);
   const registerButtonStyle = {
     backgroundColor: "white",
     borderColor: blueColor,
     color: blueColor,
   };
 
+  const handleLogOut = () => {
+    sessionStorage.removeItem('token');
+    window.location.href = '/';
+  }
   return (
     <div className="">
       <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -57,26 +76,32 @@ const Header = () => {
             </a>
           </li>
         </ul>
-
         <div className="ml-3 mr-3 py-2">
-          <a href="dashboardInmobiliaria">
-          <button
-              className="btn btn-primary mx-4"
-            >
-              Publicar
-            </button>
-          </a>
-          <a href="/login">
-            <button
-              className="btn btn-primary mx-1 text-primary"
-              style={registerButtonStyle}
-            >
-              Iniciar Sesión
-            </button>
-          </a>
-          <a href="/register">
-            <button className="btn btn-primary mx-4">Registrarse</button>
-          </a>
+          {auth && (
+            <>
+            <a href="dashboardInmobiliaria">
+              <button className="btn btn-primary mx-4">Publicar</button>
+            </a>
+            
+            <button onClick={handleLogOut} className="btn btn-primary mx-4">Cerrar Sesion</button>
+          
+          </>
+          )}
+          {!auth && (
+            <>
+              <a href="/login">
+                <button
+                  className="btn btn-primary mx-1 text-primary"
+                  style={registerButtonStyle}
+                >
+                  Iniciar Sesión
+                </button>
+              </a>
+              <a href="/register">
+                <button className="btn btn-primary mx-4">Registrarse</button>
+              </a>
+            </>
+          )}
         </div>
       </div>
     </div>

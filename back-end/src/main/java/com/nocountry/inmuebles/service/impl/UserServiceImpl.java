@@ -15,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -38,18 +39,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<String> login(Map<String, String> requestMap) {
+    public ResponseEntity<?> login(Map<String, String> requestMap) {
         System.out.println("dentro de login");
         System.out.println("email: "+ requestMap.get("email"));
         System.out.println("password: "+ requestMap.get("password"));
+        Map<String, String> salida = new HashMap<>();
         try{
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(requestMap.get("email"), requestMap.get("password"))
             );
 
             if(authentication.isAuthenticated()){
-                return new ResponseEntity<String>("{\"token\":\"" + jwtUtil.generateToken(customerDetailsService.getUserDetail().getEmail(),
-                        customerDetailsService.getUserDetail().getRol().getDescription()) + "\"}", HttpStatus.OK);
+                salida.put("token", jwtUtil.generateToken(customerDetailsService.getUserDetail().getEmail(),
+                        customerDetailsService.getUserDetail().getRol().getDescription()));
+                salida.put("idUsuario", String.valueOf(customerDetailsService.getUserDetail().getId()));
+                return  ResponseEntity.ok(salida);
             }
 
 

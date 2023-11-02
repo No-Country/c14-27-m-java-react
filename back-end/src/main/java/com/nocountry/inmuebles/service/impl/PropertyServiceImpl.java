@@ -13,18 +13,16 @@ import com.nocountry.inmuebles.service.abstraction.PropertyService;
 import com.nocountry.inmuebles.util.PropertySpecification;
 import lombok.RequiredArgsConstructor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.InvalidPropertyException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -58,6 +56,8 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public PropertyResponse createProperty(List<MultipartFile> file, PropertyRequest propertyRequest){
         try {
+            LocalTime currentTime = LocalTime.now();
+            LocalDate currentDate = LocalDate.now();
             Property property = propertyMapper.requestToProperty(propertyRequest);
             City city = cityRepository.findById(propertyRequest.getCity_id()).orElseThrow();
             PropertyType propertyType = propertyTypeRepository.findById(propertyRequest.getProperty_type_id()).orElseThrow();
@@ -68,6 +68,9 @@ public class PropertyServiceImpl implements PropertyService {
             property.setProvince(province);
             property.setUser_registration(user);
             property.setProperty_image(awsService.uploadImage(file, property));
+            property.setRegistration_date(currentDate.toString());
+            property.setRegistration_time(currentTime.toString());
+            property.setState(true);
             Property propertySaved = propertyRepository.save(property);
             PropertyResponse propertyResponse = propertyMapper.propertyToResponse(propertySaved);
             return propertyResponse;
@@ -112,6 +115,6 @@ public class PropertyServiceImpl implements PropertyService {
 
     @Override
     public void delete(Long id) {
-        propertyRepository.delete(propertyRepository.getById(id));
+        propertyRepository.deleteById(id);
     }
 }
