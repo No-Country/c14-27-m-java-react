@@ -32,14 +32,15 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         System.out.println("ENTRO al doFilter internal");
-        if(request.getServletPath().matches("/user/login|/user/forgotPassword|/user/save|/property/all|/province|/city/.*|/correo/.*|/property/filter|/property_type|/property/findById/.*")){
+        if(request.getServletPath().matches("/user/login|/property/add|/user/forgotPassword|/user/save|/property/all|/province|/city/.*|/correo/.*|/property/filter|/property_type|/property/findById/.*")){
             filterChain.doFilter(request, response);
         }
         else{
             System.out.println("el token es : " + request);
             String authorizationHeader = request.getHeader("Authorization");
             String token = null;
-
+            System.out.println("Hola estoy aca");
+            System.out.println(authorizationHeader);
             if(authorizationHeader!=null && authorizationHeader.startsWith("Bearer ")){
                 token = authorizationHeader.substring(7);
                 username = jwtUtil.extractUserName(token);
