@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CityController {
     private final CityService cityService;
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public List<City> getAllCities(@PathVariable("id") Long idProvince){
         return cityService.getAllCities(idProvince);
     }
