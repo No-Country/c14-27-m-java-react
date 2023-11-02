@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/correo")
-@CrossOrigin("*")
+
 public class EnviarCorreoController {
 
     @Autowired

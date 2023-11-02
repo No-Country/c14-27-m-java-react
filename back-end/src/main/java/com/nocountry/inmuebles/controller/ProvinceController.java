@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/province")
-@CrossOrigin("*")
+
 @RequiredArgsConstructor
 public class ProvinceController {
     private final ProvinceService provinceService;

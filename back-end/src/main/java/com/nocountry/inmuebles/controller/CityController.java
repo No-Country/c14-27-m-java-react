@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/city")
-@CrossOrigin("*")
+
 @RequiredArgsConstructor
 public class CityController {
     private final CityService cityService;
