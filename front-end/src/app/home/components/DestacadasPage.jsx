@@ -41,7 +41,7 @@ export default function DestacadasPage() {
         </div>
 
         <div className="d-flex justify-content-center">
-          <Link href={"/props"} className="btn btn-primary mt-4 mb-4">
+          <Link href={"/props"} className="btn btn-primary px-5 mt-4 mb-4">
             Ver Más
           </Link>
         </div>
