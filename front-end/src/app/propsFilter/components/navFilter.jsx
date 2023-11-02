@@ -4,11 +4,14 @@ import styles from "./navFilter.module.css";
 import axios from "axios";
 import urlProdu from "@/app/dataHardcodeada/url";
 
-export default function NavFilter({ setPropiedades }) {
+export default function NavFilter({  setPropiedades ,data, province, city }) {
+  console.log(data)
+  console.log(province)
+  console.log(city)
   const [filters, setFilters] = useState({
     property_type: "",
     bedrooms: "",
-    bathrooms: "",
+    bathrooms: "",  
   });
 
   const handleSearch = () => {
@@ -29,17 +32,20 @@ export default function NavFilter({ setPropiedades }) {
     const queryString = queryParams.toString();
     console.log('url:', queryString)
 
-    axios.get(`${urlProdu}/property/filter?${queryString}`)
+    axios.get(`${urlProdu}/property/filter?province=${province}&&city=${city}&&${queryString}`)
       .then((response) => {
-        console.log('DataFilter:', response.data);
+        console.log('DataFilterUbic:', response.data);
         const properties = response.data.content;
         setPropiedades(properties);
+ 
         // Aquí puedes hacer lo que necesites con la respuesta
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
+
+ 
   return (
     <div className={styles.navbar}>
       <div className={styles.filter}>

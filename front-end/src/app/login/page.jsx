@@ -8,8 +8,10 @@ import {
   displayFailedMessage,
   displaySuccessMessage,
 } from "@/app/components/Toastify";
+import { useRouter } from "next/navigation";
 
 function Login() {
+  const router = useRouter();
   const [error, setError] = useState("");
   const [credentials, setCredentials] = useState({
     email: "",
@@ -26,9 +28,12 @@ function Login() {
       try {
         const res = await axios.post(`${urlProdu}/user/login`, credentials);
         console.log(res);
+        const token = res.data.token;
+        // Guardar el token en el sessionStorage
+        sessionStorage.setItem("token", token);
         displaySuccessMessage("Sesion Iniciada");
         setTimeout(() => {
-          href = "/";
+          router.push("/"); // Redirigimos a '/'
         }, 2000);
       } catch (error) {
         console.log(error);
@@ -38,57 +43,59 @@ function Login() {
   };
 
   return (
-    <div
-      className="container d-flex text-center justify-content-center align-items-center"
-      style={{ height: "80vh" }}
-    >
-      <form
-        className="p-3 p-3 shadow-lg p-3 mb-5 bg-body rounded"
-        style={{ width: "50%", height: "50vh" }}
-        onSubmit={handleSubmit}
+    <div>
+      <div
+        className="container d-flex text-center justify-content-center align-items-center"
+        style={{ height: "80vh" }}
       >
-        <h2 className="text-center">Bienvenido</h2>
-        <div className="form-group row justify-content-center">
-          <div className="form-group justify-content-center col-sm-8 mb-3">
-            <input
-              type="email"
-              className="form-control "
-              id="email"
-              placeholder="Correo"
-              onChange={(e) =>
-                setCredentials({
-                  ...credentials,
-                  email: e.target.value,
-                })
-              }
-            />
+        <form
+          className="p-3 p-3 shadow-lg p-3 mb-5 bg-body rounded"
+          style={{ width: "50%", height: "50vh" }}
+          onSubmit={handleSubmit}
+        >
+          <h2 className="text-center">Bienvenido</h2>
+          <div className="form-group row justify-content-center">
+            <div className="form-group justify-content-center col-sm-8 mb-3">
+              <input
+                type="email"
+                className="form-control "
+                id="email"
+                placeholder="Correo"
+                onChange={(e) =>
+                  setCredentials({
+                    ...credentials,
+                    email: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="form-group col-sm-8 mb-3">
+              <input
+                type="password"
+                className="form-control "
+                id="password"
+                placeholder="Contraseña"
+                onChange={(e) =>
+                  setCredentials({
+                    ...credentials,
+                    password: e.target.value,
+                  })
+                }
+              />
+            </div>
           </div>
-          <div className="form-group col-sm-8 mb-3">
-            <input
-              type="password"
-              className="form-control "
-              id="password"
-              placeholder="Contraseña"
-              onChange={(e) =>
-                setCredentials({
-                  ...credentials,
-                  password: e.target.value,
-                })
-              }
-            />
+          <div className="form-group ">
+            <button type="submit" className="btn btn-primary btn-block ">
+              Ingresar
+            </button>
           </div>
-        </div>
-        <div className="form-group ">
-          <button type="submit" className="btn btn-primary btn-block ">
-            Ingresar
-          </button>
-        </div>
-        {error && (
+          {error && (
             <div className="flex justify-center text-danger mt-2 mb-2">
               {error}
             </div>
           )}
-      </form>
+        </form>
+      </div>
       <ToastContainer style={{ marginTop: "100px" }} />
     </div>
   );

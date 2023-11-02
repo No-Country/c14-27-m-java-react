@@ -8,6 +8,7 @@ import urlProdu from "../dataHardcodeada/url";
 export default function PropsPage() {
   const desarrolloApp = "http://localhost:9090";
   const [propiedades, setPropiedades] = useState([]);
+  console.log('propNew:',propiedades);
 
   useEffect(() => {
     axios
