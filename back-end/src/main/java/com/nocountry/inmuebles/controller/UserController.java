@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Map<String, String> requestMap){
+    public ResponseEntity<?> login(@RequestBody Map<String, String> requestMap){
         try{
             return servicio.login(requestMap);
         }catch(Exception e){
