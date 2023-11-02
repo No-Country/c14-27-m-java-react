@@ -6,20 +6,19 @@ import NavFilter from "./components/navFilter";
 import { getSessionStorageLocation } from "../func/sessionStorage";
 
 export default function PropsFilterPage() {
-  const dataJ = getSessionStorageLocation();
-  const data = dataJ.ubic;
-  console.log('session:',data)
-  const [properties, setProperties] = useState(data)
-  const [filter, setFilter] = useState([]);
+  const dt = JSON.parse(sessionStorage.getItem('location'));
+  const data = dt.ubic
   console.log('dataPage:',data)
-  console.log('filterPage:',filter)
-  
+  console.log(dt.cityDescription)
+  console.log(dt.provinceDescription)
+  const [propiedades, setPropiedades] = useState(data);
+
 
 
   return (
     <div>
-      <NavFilter properties={ data } setFilter={setFilter}/>
-      {data?.map((propiedad, index) => ( 
+      <NavFilter  setPropiedades={setPropiedades} data={ data } province={ dt.provinceDescription } city={ dt.cityDescription }/>
+      {propiedades?.map((propiedad, index) => (  
         <PropCard key={index} data={propiedad} />
       ))}
     </div>

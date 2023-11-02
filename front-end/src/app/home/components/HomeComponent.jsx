@@ -11,8 +11,6 @@ export default function HomeComponent() {
   const [selectedCity, setSelectedCity] = useState("");
   const [cities, setCities] = useState([]);
   const [provinces, setProvinces] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState('');
   useEffect(() => {
     axios
