@@ -8,11 +8,10 @@ import urlProdu from "@/app/dataHardcodeada/url";
 
 export default function HomeComponent() {
   const [selectedProvince, setSelectedProvince] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
   const [cities, setCities] = useState([]);
   const [provinces, setProvinces] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-
+  const [error, setError] = useState('');
   useEffect(() => {
     axios
       .get(`${urlProdu}/province`)
@@ -26,25 +25,40 @@ export default function HomeComponent() {
   }, []);
 
   const handleSearch = () => {
-    if (selectedProvince && city) {
+    if (selectedProvince && selectedCity) {
       axios
-        .get(`${urlProdu}/${selectedProvince}/${searchTerm}`)
+        .get(`${urlProdu}/property/filter?province=${selectedProvince.description}&&city=${selectedCity.description}`)
         .then((response) => {
-          // Handle the response here
+          console.log('res:',response)
+          console.log('res.content:',response.data.content)
+          const location = {
+            ubic: response.data.content,
+            provinceDescription: selectedProvince.description,
+            cityDescription: selectedCity.description
+          };
+          sessionStorage.setItem('location', JSON.stringify(location));
+          window.location.href = '/propsFilter';
         })
         .catch((error) => {
-          console.error("Error making request:", error);
+          if (error.response && error.response.status === 404) {
+            console.error("No se encontraron propiedades con estos filtros");
+            setError('Por ahora no tenemos propiedades disponibles en esa ubicaccion, lo siento')
+          } else {
+            console.error("Error making request:", error);
+          }
         });
     }
   };
 
   const handleProvinceChange = (e) => {
-    const selectedValue = e.target.value;
-    setSelectedProvince(selectedValue);
+    const selectedValueId = parseInt(e.target.value, 10);     
+setSelectedProvince(selectedValueId);
+
+    console.log('Provincia select:', selectedValueId)
 
     // Hacer la solicitud para obtener las ciudades
     axios
-      .get(`${urlProdu}/city/${selectedValue}`)
+      .get(`${urlProdu}/city/${selectedValueId}`)
       .then((response) => {
         setCities(response.data);
         console.log("cities:", response.data);
@@ -54,20 +68,13 @@ export default function HomeComponent() {
       });
   };
 
-  const handleInputSearch = (e) => {
-    const newSearchTerm = e.target.value;
-    setSearchTerm(newSearchTerm);
+  const handleCityChange = (e) => {
+    const selectedValueId = parseInt(e.target.value, 10);
+setSelectedCity(selectedValueId);
 
-    const filteredSuggestions = cities.filter((city) =>
-      city.description.toLowerCase().startsWith(newSearchTerm.toLowerCase())
-    );
-    setSuggestions(filteredSuggestions);
-  };
+    console.log('City select:',selectedValueId)
+  }
 
-  const handleSuggestionClick = (suggestion) => {
-    setSearchTerm(suggestion);
-    setSuggestions([]);
-  };
 
   return (
     <div
@@ -94,6 +101,7 @@ export default function HomeComponent() {
               className="form-select"
               value={selectedProvince}
               onChange={handleProvinceChange} // Cambiado aquí
+              name='province'
             >
               <option value="">Selecciona una provincia</option>
               {provinces?.map((province) => (
@@ -106,8 +114,8 @@ export default function HomeComponent() {
           <div className="col m-2">
             <select
               className="form-select"
-              value={cities}
-              onChange={(e) => setCities(e.target.value)}
+              value={selectedCity}
+              onChange={handleCityChange}
             >
               <option value="">Selecciona una ciudad</option>
               {cities?.map((city) => (
@@ -118,15 +126,19 @@ export default function HomeComponent() {
             </select>
           </div>
           <div className="col">
-            <Link
-              href="/detail"
+            <button
               className="btn btn-primary"
               onClick={handleSearch}
             >
               Buscar
-            </Link>
+            </button>
           </div>
         </div>
+        {error && (
+            <div className="flex justify-center text-danger mt-2 mb-2 bg-white p-1" >
+              {error}
+            </div>
+          )}
       </div>
     </div>
   );
