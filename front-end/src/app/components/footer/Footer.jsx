@@ -71,10 +71,12 @@ function Footer() {
         </button>
         <button
           type="button"
-          className="rounded-circle mx-3 overflow-hidden"
+          className="rounded-circle mx-3 overflow-hidden "
           style={{ width: "50px", height: "50px" }}
         >
+          <a href="https://api.whatsapp.com/send?phone=5493624" class='text-black'>
           <i class="bi bi-whatsapp"></i>
+          </a>
         </button>
         <button
           type="button"

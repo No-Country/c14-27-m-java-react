@@ -4,9 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "@/app/props/components/form";
 import Text from "@/app/props/components/text";
 import Image from "@/app/props/components/image";
+import urlProdu from "@/app/dataHardcodeada/url";
 
-const detailId = (id) => {
-    return fetch(`https://c14-27-m-java-react-production.up.railway.app/property/findById/${id}`)
+const detailId = async(id) => {
+    return fetch(`${urlProdu}/property/findById/${id}`)
     .then(response => response.json())
 }
 
