@@ -8,8 +8,10 @@ import {
   displayFailedMessage,
 } from "@/app/components/Toastify";
 import axiosInstance from "@/app/func/Func";
+import { getSessionStorageToken } from "@/app/func/sessionStorage";
 
 const Form = () => {
+  const [token, setToken] = useState("");
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [cities, setCities] = useState([]);
@@ -35,8 +37,11 @@ const Form = () => {
     { id: 2, description: "Departamento" },
     { id: 3, description: "Terreno" },
   ];
-
   useEffect(() => {
+    const tokenStorage = getSessionStorageToken();
+    setToken(tokenStorage);
+    console.log("tokenForm:", tokenStorage);
+
     axios
       .get(`${urlProdu}/province`)
       .then((response) => {
@@ -47,6 +52,7 @@ const Form = () => {
         console.log(error);
       });
   }, []);
+  console.log("token:", token);
 
   const handleProvinceChange = (e) => {
     const { name, value } = e.target;
@@ -104,9 +110,10 @@ const Form = () => {
     });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const dataSubm = {
+    const propertyRequest = {
       property_type_id: data.propertyType,
       address: {
         street: data.street,
@@ -129,47 +136,43 @@ const Form = () => {
       registration_date: "2023-10-07",
       registration_time: "12:48",
       state: true,
-      img: data.image
     };
-    console.log("Form submitted:", dataSubm);
-    console.log("Form data:", data);
 
     const formData = new FormData();
+    formData.append("propertyRequest", JSON.stringify(propertyRequest));
+    formData.append("img", data.image);
+    const objectFromFormData = {};
+    formData.forEach((value, key) => {
+      objectFromFormData[key] = value;
+    });
+    console.log('objectFromFormData:',objectFromFormData)
 
-    formData.append("property_type_id", dataSubm.property_type_id);
-    formData.append("address", JSON.stringify(dataSubm.address));
-    formData.append("province_id", dataSubm.province_id);
-    formData.append("city_id", dataSubm.city_id);
-    formData.append("price", dataSubm.price);
-    formData.append("square_meter", dataSubm.square_meter);
-    formData.append("bedrooms", dataSubm.bedrooms);
-    formData.append("bathrooms", dataSubm.bathrooms);
-    formData.append("contract_type", dataSubm.contract_type);
-    formData.append("name", dataSubm.name);
-    formData.append("description", dataSubm.description);
-    formData.append("noted", dataSubm.noted);
-    formData.append("user_id", dataSubm.user_id);
-    formData.append("registration_date", dataSubm.registration_date);
-    formData.append("registration_time", dataSubm.registration_time);
-    formData.append("state", dataSubm.state);
+    console.log(objectFromFormData);
 
-    if (dataSubm.img) {
-      formData.append("image", dataSubm.img);
-    }
-    console.log('formData:',formData)
+    axios.interceptors.request.use(
+      (config) => {
+        //add api token
+        const apiToken = sessionStorage.getItem("token");
+        if (apiToken) {
+          config.headers = { "x-rapidapi-key": apiToken };
+        }
+    
+        console.log("Request was sent", config);
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+
     try {
-      const response = await axios.post(`${urlProdu}/property/add`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnb256YXN1YXJlejEwMEBnbWFpbC5jb20iLCJyb2xlIjoic2VsbGVyIiwiZXhwIjoxNjk4OTQxODkzLCJpYXQiOjE2OTg5MzgyOTN9.Auq8jOdIcOH6sM9PUlbwyrCIV4dw49ZBaQmK0yni3tE`
-        },
-      });
+      const response = await axios.post(`${urlProdu}/property/add`, formData);
       console.log("Response:", response.data);
     } catch (error) {
       console.error("Error:", error);
+      console.log("formsdata:", formData);
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit}>
