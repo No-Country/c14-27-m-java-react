@@ -13,8 +13,6 @@ export default function PropsFilterPage() {
   // console.log(dt.provinceDescription)
   // const [propiedades, setPropiedades] = useState(data);
 
-
-
   return (
     <div>
       {/* <NavFilter  setPropiedades={setPropiedades} data={ data } province={ dt.provinceDescription } city={ dt.cityDescription }/>

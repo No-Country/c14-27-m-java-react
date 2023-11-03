@@ -171,9 +171,14 @@ const Form = () => {
     try {
       const response = await axiosInstance.post(`${urlProdu}/property/add`, formData, { headers });
       console.log("Response:", response.data);
+      displaySuccessMessage('Publicacion Creada')
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 2000);
     } catch (error) {
       console.error("Error:", error);
       console.log("formsdata:", formData);
+      displayFailedMessage('No se ha podido publicar')
     }
   };
 
@@ -389,7 +394,6 @@ const Form = () => {
           </div>
         </div>
       </div>
-
       <div className="mb-3">
         <label htmlFor="image" className="form-label">
           Subir Imágenes
