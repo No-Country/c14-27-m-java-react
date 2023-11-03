@@ -33,7 +33,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/**", "/city/**", "/province/**", "/property/all",
+                        .requestMatchers("/user/**", "/property/add","/city/**", "/province/**", "/property/all",
                                 "/property/findById/**", "/property/filter", "/correo/**", "/property_type").permitAll()
                         .anyRequest()
                         .authenticated());

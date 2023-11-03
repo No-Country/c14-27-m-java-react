@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/province")
+
 @RequiredArgsConstructor
 public class ProvinceController {
     private final ProvinceService provinceService;

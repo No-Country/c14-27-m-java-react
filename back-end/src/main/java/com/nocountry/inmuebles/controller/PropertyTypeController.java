@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/property_type")
-@CrossOrigin("*")
+
 @RequiredArgsConstructor
 public class PropertyTypeController {
     private final PropertyTypeService propertyTypeService;
