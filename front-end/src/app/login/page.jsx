@@ -29,8 +29,13 @@ function Login() {
         const res = await axios.post(`${urlProdu}/user/login`, credentials);
         console.log(res);
         const token = res.data.token;
+        const idUsuario = res.data.idUsuario;
         // Guardar el token en el sessionStorage
         sessionStorage.setItem("token", token);
+        sessionStorage.setItem("userId", idUsuario);
+
+        console.log("el id de usuario despues del login es ", idUsuario)
+
         displaySuccessMessage("Sesion Iniciada");
         setTimeout(() => {
           window.location.href = '/';
