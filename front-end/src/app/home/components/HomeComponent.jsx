@@ -11,7 +11,9 @@ export default function HomeComponent() {
   const [selectedCity, setSelectedCity] = useState("");
   const [cities, setCities] = useState([]);
   const [provinces, setProvinces] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
+  const [descriptionProvince, setDescriptionProvince] = useState("");
+  const [descriptionCity, setDescriptionCity] = useState("");
   useEffect(() => {
     axios
       .get(`${urlProdu}/province`)
@@ -25,24 +27,28 @@ export default function HomeComponent() {
   }, []);
 
   const handleSearch = () => {
-    if (selectedProvince && selectedCity) {
+    if (selectedProvince ) {
       axios
-        .get(`${urlProdu}/property/filter?province=${selectedProvince.description}&&city=${selectedCity.description}`)
+        .get(
+          `${urlProdu}/property/filter?province=${descriptionProvince}&&city=${descriptionCity}`
+        )
         .then((response) => {
-          console.log('res:',response)
-          console.log('res.content:',response.data.content)
+          console.log("res:", response);
+          console.log("res.content:", response.data.content);
           const location = {
             ubic: response.data.content,
             provinceDescription: selectedProvince.description,
-            cityDescription: selectedCity.description
+            cityDescription: selectedCity.description,
           };
-          sessionStorage.setItem('location', JSON.stringify(location));
-          window.location.href = '/propsFilter';
+          sessionStorage.setItem("location", JSON.stringify(location));
+          window.location.href = "/propsFilter";
         })
         .catch((error) => {
           if (error.response && error.response.status === 404) {
             console.error("No se encontraron propiedades con estos filtros");
-            setError('Por ahora no tenemos propiedades disponibles en esa ubicaccion, lo siento')
+            setError(
+              "Por ahora no tenemos propiedades disponibles en esa ubicaccion, lo siento"
+            );
           } else {
             console.error("Error making request:", error);
           }
@@ -50,11 +56,13 @@ export default function HomeComponent() {
     }
   };
 
-  const handleProvinceChange = (e) => {
-    const selectedValueId = parseInt(e.target.value, 10);     
-setSelectedProvince(selectedValueId);
+  const handleProvinceChange = (e, description) => {
+    const selectedValueId = parseInt(e.target.value, 10);
+    setSelectedProvince(selectedValueId);
+    setDescriptionProvince(description);
 
-    console.log('Provincia select:', selectedValueId)
+    console.log("Provincia select:", selectedValueId);
+    console.log("Descripción:", description);
 
     // Hacer la solicitud para obtener las ciudades
     axios
@@ -68,13 +76,14 @@ setSelectedProvince(selectedValueId);
       });
   };
 
-  const handleCityChange = (e) => {
+  const handleCityChange = (e, description) => {
     const selectedValueId = parseInt(e.target.value, 10);
-setSelectedCity(selectedValueId);
+    setSelectedCity(selectedValueId);
+    setDescriptionCity(description);
 
-    console.log('City select:',selectedValueId)
-  }
-
+    console.log("City select:", selectedValueId);
+    console.log("Descripción:", description);
+  };
 
   return (
     <div
@@ -92,7 +101,7 @@ setSelectedCity(selectedValueId);
           backgroundColor: "rgba(0, 0, 0, 0.5)",
         }}
       />
-      <div className="text-center position-relative z-index-2"> 
+      <div className="text-center position-relative z-index-2">
         <h1 className="mt-5 text-white">Encuentra tu nuevo Hogar</h1>
         <p className="text-white">Tenemos la mejor opción para vos</p>
         <div className="d-flex justify-content-center align-items-center mb-3">
@@ -100,8 +109,8 @@ setSelectedCity(selectedValueId);
             <select
               className="form-select"
               value={selectedProvince}
-              onChange={handleProvinceChange} // Cambiado aquí
-              name='province'
+              onChange={(e) => handleProvinceChange(e, e.target.options[e.target.selectedIndex].text)}
+              name="province"
             >
               <option value="">Selecciona una provincia</option>
               {provinces?.map((province) => (
@@ -115,7 +124,7 @@ setSelectedCity(selectedValueId);
             <select
               className="form-select"
               value={selectedCity}
-              onChange={handleCityChange}
+              onChange={(e) => handleCityChange(e, e.target.options[e.target.selectedIndex].text)}
             >
               <option value="">Selecciona una ciudad</option>
               {cities?.map((city) => (
@@ -126,19 +135,16 @@ setSelectedCity(selectedValueId);
             </select>
           </div>
           <div className="col">
-            <button
-              className="btn btn-primary"
-              onClick={handleSearch}
-            >
+            <button className="btn btn-primary" onClick={handleSearch}>
               Buscar
             </button>
           </div>
         </div>
         {error && (
-            <div className="flex justify-center text-danger mt-2 mb-2 bg-white p-1" >
-              {error}
-            </div>
-          )}
+          <div className="flex justify-center text-danger mt-2 mb-2 bg-white p-1">
+            {error}
+          </div>
+        )}
       </div>
     </div>
   );
