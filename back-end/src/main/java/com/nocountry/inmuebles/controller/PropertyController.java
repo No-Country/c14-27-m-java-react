@@ -19,7 +19,6 @@ import java.util.List;
 
 
 @RequiredArgsConstructor
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/property")
 public class PropertyController {
@@ -30,7 +29,7 @@ public class PropertyController {
     //-------------------------------------------- Register Property Method --------------------------------------------
     @PostMapping("/add")
     public PropertyResponse registerProperty(@RequestPart(value = "img", required = false)List<MultipartFile> img,
-                                             @RequestPart @Valid PropertyRequest propertyRequest) {
+                                             @RequestPart(value = "propertyRequest") PropertyRequest propertyRequest) {
         return propertyService.createProperty(img, propertyRequest);
     }
     @GetMapping("/all")
