@@ -60,7 +60,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         var configuration = new CorsConfiguration();
         //Seteo los metodos y origines permitidos en la API
-        configuration.setAllowedOrigins(List.of("http://127.0.0.1:5500/", "http://localhost:3000/", "https://c14-27-m-java-react-fptywn5ta-gonzas-projects-49847086.vercel.app/"));
+        configuration.setAllowedOrigins(List.of("http://127.0.0.1:5500/", "http://localhost:3000/", "https://c14-27-m-java-react-git-main-gonzas-projects-49847086.vercel.app/", "https://c14-27-m-java-react-o8y9z2u1g-gonzas-projects-49847086.vercel.app/"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
         configuration.setAllowCredentials(true);
