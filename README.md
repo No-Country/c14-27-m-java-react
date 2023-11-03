@@ -83,7 +83,7 @@ MultiPlace es una innovadora aplicación web diseñada para simplificar el proce
 
 ### Equipo de front
 
-| <img src="" width=130/>|
+| <img src="https://scontent.cdninstagram.com/v/t51.2885-15/313904833_433890452262144_6416322523443056469_n.webp?stp=dst-jpg_e35&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMDgweDEzNTAuc2RyIn0&_nc_ht=scontent.cdninstagram.com&_nc_cat=100&_nc_ohc=sjod-bK02wQAX_VuxAd&edm=APs17CUBAAAA&ccb=7-5&ig_cache_key=Mjk2NDIxMzIwMjI5MzQ2NDQ4Mw%3D%3D.2-ccb7-5&oh=00_AfDFUqb_4x_1jcpGL9OS5xX2rtYaDXb08xd3lGogDOdC_Q&oe=6549E66B&_nc_sid=10d13b" width=130/>|
 |:-:|
 | **Damian Aguirre** |
 |<a href="https://github.com/DamianJavierAguirreCerullo"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/damian-javier-aguirre-cerullo-55335522a/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
